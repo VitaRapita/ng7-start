@@ -1,0 +1,67 @@
+<div class="page-header"><h2>Archief</h2></div>
+<button mat-raised-button class="blue-btn">
+  <a routerLink="/article-review">Artikel review</a>
+</button>
+
+<section class="bg-wrapper">
+  <mat-form-field class="p-3" style="width: 50%">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Winkel">
+  </mat-form-field>
+  <mat-form-field class="p-3" style="width: 50%">
+    <mat-select matNativeControl (selectionChange)="filterByWeek($event.value)" placeholder="Week">
+      <mat-option value="28">28</mat-option>
+      <mat-option value="32">32</mat-option>
+      <mat-option value="33">33</mat-option>
+      <mat-option value="36">36</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="p-3">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div class="data-table mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Naam </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="storeId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Winkel ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.storeId}} </td>
+      </ng-container>
+
+      <!-- Adapted Column -->
+      <ng-container matColumnDef="adapted">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Aangepast op</th>
+        <td mat-cell *matCellDef="let row"> {{row.editDate}} </td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+      </ng-container>
+
+      <!-- Week Column -->
+      <ng-container matColumnDef="week">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Week </th>
+        <td mat-cell *matCellDef="let row"> {{row.week}} - {{row.year}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</section>

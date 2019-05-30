@@ -1,0 +1,44 @@
+@import '../../../../styles/variables';
+.preview-article {
+  img {
+    height: 200px;
+    border: 1px solid lightgray;
+
+    &.logo {
+      height: 120px;
+    }
+  }
+
+  .static-block {
+    .store-name {
+      background-color: $blue-button-color;
+      color: #fff;
+      img {
+        border: none;
+      }
+    }
+  }
+
+  .custom-block {
+    .client-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .article-text {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .signature {
+      font-weight: 500;
+
+      span {
+        font-weight: 400;
+        &.bold {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import '../../../../styles/variables';
+$transition_time: 0.2s;
+
+.aniAuto {
+  transition: all 3s linear;
+}
+
+.carousel {
+  color: white;
+  .content {
+    display: flex;
+    transition: all 0.295s linear $transition_time;
+
+    .item {
+      // width: 100%;
+      display: block;
+      transition: opacity 0.295s linear $transition_time;
+
+      .week-btn {
+        height: 50px;
+        display: block;
+        width: 130px;
+        border: 1px solid $blue-button-color;
+        color: $blue-button-color;
+        background-color: #fff;
+
+        &.visible {
+          border-color: $orange-button-color;
+          color: $orange-button-color;
+        }
+      }
+    }
+  }
+
+  .ball {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: black;
+    border: 2px solid;
+    opacity: 0.5;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .click-area {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 3em;
+    }
+  }
+}

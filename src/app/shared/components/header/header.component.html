@@ -1,0 +1,92 @@
+<header class="app-header navbar py-0">
+      <span class="navbar-brand">
+        <a href="/">
+          <img
+            class="navbar-brand-full"
+            src="../assets/img/ahold-logo.png"
+            height="60"
+            alt="AholdLogo"
+          />
+        </a>
+      </span>
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item">
+      <a
+        class="nav-link px-3"
+        routerLinkActive="active"
+        routerLink="/overview"
+      >Overzicht</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link px-3"
+        routerLinkActive="active"
+        routerLink="/create"
+      >Aanmaken</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link px-3"
+        routerLinkActive="active"
+        routerLink="/archive"
+      >Archief</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link px-3"
+        routerLinkActive="active"
+        routerLink="/faq"
+      >FAQ/Handboek</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link px-3"
+        routerLinkActive="active"
+        routerLink="/reporting"
+      >Rapportage</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link px-3"
+         routerLinkActive="active"
+         routerLink="/admin"
+      >Admin</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link px-3"
+         routerLinkActive="active"
+         routerLink="/tips"
+      >Tips</a
+      >
+    </li>
+  </ul>
+
+  <div class="nav navbar-nav ml-auto">
+    <div class="user-menu">
+      <p>Winkel ID: 0000</p>
+      <span>REYMOND</span>
+      <button mat-icon-button [mat-menu-trigger-for]="menu">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    </div>
+
+    <mat-menu x-position="before" #menu="matMenu">
+      <a class="mat-menu-item"
+         routerLinkActive="active"
+         routerLink="/user-settings">
+        Settings
+      </a>
+      <a  class="mat-menu-item"
+          routerLinkActive="active"
+          routerLink="/user-settings"
+          (click)="logOut()"
+        >Log Out</a
+      >
+    </mat-menu>
+  </div>
+</header>

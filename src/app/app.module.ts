@@ -6,10 +6,9 @@ import { SharedModule } from './shared';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { DashboardModule } from './dashboard/dashboard.module';
-import { UsersModule } from './users/users.module';
-import { BuilderModule } from './builder/builder.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthenticationModule } from './authentication/authentication.module';
+import 'hammerjs';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,13 +19,11 @@ import { BuilderModule } from './builder/builder.module';
     CoreModule,
     SharedModule,
 
-    // features
-    DashboardModule,
-    UsersModule,
-    BuilderModule,
-
     // app
-    AppRoutingModule
+    AppRoutingModule,
+    AuthenticationModule,
+
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

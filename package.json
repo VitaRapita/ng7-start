@@ -1,5 +1,5 @@
 {
-  "name": "binck",
+  "name": "ahold",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -38,13 +38,15 @@
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
+    "ngx-hm-carousel": "^1.6.5-bata.1",
+    "ngx-image-cropper": "^1.3.10",
     "normalize.css": "^8.0.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
-    "@angular/cli": "~7.0.1",
+    "@angular/cli": "^7.0.7",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
     "@compodoc/compodoc": "^1.1.6",
@@ -52,6 +54,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "angular-in-memory-web-api": "^0.8.0",
     "codelyzer": "~4.5.0",
     "husky": "^1.1.2",
     "jasmine-core": "~2.99.1",

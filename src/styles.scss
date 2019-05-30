@@ -29,10 +29,19 @@ a,
   display: inline-block;
   color: palette(blue, base);
   transition: color 0.2s ease;
+  cursor: pointer;
+  outline: none;
 
   &:hover {
     color: palette(gray, dark);
     text-decoration: none;
+  }
+}
+
+button {
+  outline: none !important;
+  a {
+    color: #fff;
   }
 }
 
@@ -113,7 +122,7 @@ dd {
 
 .page-header {
   padding-bottom: 9px;
-  margin: 40px 0 20px;
+  margin: 10px 0;
   border-bottom: 1px solid palette(gray, light);
 }
 
@@ -128,8 +137,9 @@ mat-icon {
 *********************/
 
 .navbar-brand {
-  width: 200px;
-  margin-right: 2rem;
+  width: 150px;
+  margin-right: 1rem;
+  text-align: center;
 
   a {
     vertical-align: 0.1875rem;
@@ -145,7 +155,7 @@ header {
   flex-direction: row;
   padding: 0;
   margin: 0;
-  background-color: palette(gray, dark);
+  background-color: #423428;
   color: palette(white, base);
   flex: 0 0 auto;
 
@@ -160,7 +170,7 @@ header {
     display: inline-block;
     position: relative;
     min-width: 130px;
-    line-height: 30px;
+    line-height: 70px;
     text-align: center;
     color: palette(white, base);
     text-transform: uppercase;
@@ -170,11 +180,18 @@ header {
     }
 
     &.active {
-      background: palette(green, base);
+      background: palette(gray, base);
 
       &:hover {
-        background: palette(green, dark);
+        background: palette(gray, base);
       }
+    }
+  }
+
+  .user-menu {
+    line-height: 18px;
+    p {
+      margin: 10px 0 0;
     }
   }
 }
@@ -198,5 +215,97 @@ header {
   .main {
     flex: 1;
     min-width: 0;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.invalid-massage {
+  color: red;
+  font-size: 12px;
+}
+
+.mat-tab-label {
+  color: $blue-button-color;
+  text-transform: uppercase;
+}
+
+/***** Table styles ****/
+.data-table {
+  box-shadow: none;
+}
+
+.mat-table {
+  .mat-cell {
+    img {
+      height: 48px;
+      width: 48px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.data-table {
+  height: 600px;
+  overflow: auto;
+  background-color: #fff;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+/****** Buttons *****/
+.blue-btn {
+  background-color: $blue-button-color;
+  color: #fff;
+  text-transform: uppercase;
+  a,
+  a:hover {
+    color: #fff;
+  }
+
+  &:disabled {
+    background-color: lightgray;
+  }
+}
+
+/********Dialog windows ******/
+
+.mat-dialog-container {
+  border-radius: 0 !important;
+
+  .mat-dialog-title {
+    background-color: $blue-button-color;
+    color: #fff;
+    margin: -24px -24px 0;
+    display: flex;
+    button {
+      height: 28px;
+      width: 28px;
+      line-height: 28px;
+    }
+  }
+
+  .mat-dialog-actions {
+    margin: 0 -24px -24px;
+    padding: 0 1rem;
+    border-top: 1px solid lightgray;
   }
 }

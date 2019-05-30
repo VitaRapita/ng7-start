@@ -1,0 +1,54 @@
+<section class="bg-wrapper preview-article p-3 mx-3">
+  <div class="static-block m-3">
+    <p class="w-100">{{articleDetails?.storeText}}</p>
+    <div class="store-name row">
+      <img class="logo" src="assets/img/ah-bonus.jpg">
+      <div class="p-3">
+        <h5>{{articleDetails?.supermarketName}}</h5>
+        <h5>{{articleDetails?.storeName}}</h5>
+      </div>
+    </div>
+    <img [src]="articleDetails?.titleImage" class="w-100 my-3">
+  </div>
+  <div class="custom-block">
+    <p class="client-name">Best 	&lt;&lt; naam klant &gt;&gt; </p>
+    <span *ngIf="articleForm" class="article-text">{{articleForm?.articleText}}</span>
+    <span *ngIf="!articleForm" class="article-text">{{articleDetails?.articleText}}</span>
+    <div class="row">
+      <img class="m-3 logo" [src]="this.articleDetails?.logo">
+      <div class="p-3 signature" *ngIf="selectSign?.id !== 8">
+        <span>Met vriendelijke groet, </span> <br/>
+        <span *ngIf="selectSign?.nameSupermarketManager" class="bold">&#123; Name supermarket manager &#125;,</span>
+        <span *ngIf="selectSign?.nameAssistantManager" class="bold">&#123; Name assistent manager &#125;,</span>
+        <span *ngIf="selectSign?.entrepreneur" class="bold">Ondernemer, </span>
+        <span *ngIf="selectSign?.cityAsTitle" class="bold">&#123; City &#125;, </span>
+        <span *ngIf="selectSign?.title" class="bold">&#123;Title&#125;, </span> <br/>
+        <span>Albert Heijn</span>
+        <span *ngIf="selectSign?.street">&#123;street&#125;</span>
+        <span *ngIf="selectSign?.houseNumber">&#123;housenumber&#125;,</span>
+        <span *ngIf="selectSign?.city">&#123;City&#125;</span> <br/>
+        <span *ngIf="selectSign?.phone">&#123;telephone number store&#125;</span> |
+        <span *ngIf="selectSign?.email">&#123;e-mail store&#125;</span>
+      </div>
+      <div class="p-3 signature" *ngIf="selectSign?.id === 8">
+        <span>Met vriendelijke groet, </span> <br/>
+        <span>&#123;Write​ ​your​ ​own​ ​signature&#125;</span>
+      </div>
+    </div>
+    <div *ngIf="articleForm">
+      <div class="text-center btn-block" *ngIf="articleForm?.ctaText && articleForm?.ctaLink">
+        <button class="blue-btn" mat-raised-button>
+          <a [href]="articleForm?.ctaLink">{{articleForm?.ctaText}}</a>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!articleForm">
+      <div class="text-center btn-block" *ngIf="articleDetails?.ctaText && articleDetails?.ctaLink">
+        <button class="blue-btn" mat-raised-button>
+          <a [href]="articleDetails?.ctaLink">{{articleDetails?.ctaText}}</a>
+        </button>
+      </div>
+    </div>
+    <img class="w-100 my-3" [src]="articleDetails?.titleImage">
+  </div>
+</section>

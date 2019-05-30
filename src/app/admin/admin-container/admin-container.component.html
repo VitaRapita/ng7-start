@@ -1,0 +1,13 @@
+<mat-tab-group [color]="'accent'">
+  <mat-tab label="Gebruikers">
+    <ng-container *ngIf = "isUsersLoaded">
+      <bb-admin-users-table [users]="users" (changeSlider)="changeSliderParent($event)"></bb-admin-users-table>
+    </ng-container>
+  </mat-tab>
+  <mat-tab label="Winkels">
+    <ng-container *ngIf = "isStoresLoaded">
+      <bb-admin-stores-table [stores]="stores"></bb-admin-stores-table>
+    </ng-container>
+  </mat-tab>
+</mat-tab-group>
+

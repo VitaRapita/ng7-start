@@ -1,0 +1,47 @@
+<ngx-hm-carousel
+  align="left"
+  show-num="auto"
+  [drag-many]="true"
+  [infinite]="infinite"
+  [aniTime]="400"
+  [data]="weeks"
+  class="carousel c-accent">
+
+  <section ngx-hm-carousel-container class="content">
+    <article class="item cursor-pointer"
+             ngx-hm-carousel-item
+             *ngFor="let week of weeks; let i = index">
+      <button class="week-btn"
+              [ngClass]="{'visible': currentIndex === i}"
+              mat-button
+              (click)="click(i+1)">
+        Week {{week}}
+      </button>
+    </article>
+    <ng-template #infiniteContainer></ng-template>
+  </section>
+
+  <!-- only using in infinite mode or autoplay mode, that will render with-->
+  <ng-template #carouselContent let-week let-i="index">
+    <article class="item cursor-pointer"
+             [ngClass]="{'visible': currentIndex===i}">
+      <button class="week-btn" mat-stroked-button color="primary" (click)="click(i+1)">Week {{week}}</button>
+    </article>
+  </ng-template>
+
+  <ng-template #carouselPrev>
+    <div class="click-area">
+      <i class="material-icons" style="color: #000">keyboard_arrow_left</i>
+    </div>
+  </ng-template>
+  <ng-template #carouselNext>
+    <div class="click-area">
+      <i class="material-icons" style="color: #000">keyboard_arrow_right</i>
+    </div>
+  </ng-template>
+
+  <ng-template #carouselProgress let-progress>
+    <div class="progress"></div>
+  </ng-template>
+
+</ngx-hm-carousel>

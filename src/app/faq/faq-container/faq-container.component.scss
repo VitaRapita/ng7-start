@@ -1,0 +1,9 @@
+.mat-accordion .mat-expansion-panel {
+  box-shadow: none;
+  border-bottom: 1px solid #bfbfbf;
+
+  &:last-of-type {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

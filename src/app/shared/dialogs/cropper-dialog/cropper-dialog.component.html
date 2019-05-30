@@ -1,0 +1,20 @@
+<div mat-dialog-title class="row justify-content-between p-3">
+  <h4>Afbeelding uitsnijden</h4>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="crop-container row">
+  <div class="w-50">
+    <p>Originele afbeelding</p>
+    <bb-image-cropper (changeImage)="changeImage($event)"></bb-image-cropper>
+  </div>
+  <div class="result w-50">
+    <p>Result</p>
+    <img *ngIf="image" [src]="image">
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuleren</button>
+  <button mat-button [mat-dialog-close]="image">Accepteren</button>
+</div>

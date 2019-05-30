@@ -1,0 +1,14 @@
+@import '../../../../styles/variables';
+.crop-container {
+  display: flex;
+  width: 700px;
+  margin-top: 1rem;
+  p {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .result {
+    padding: 5px;
+  }
+}

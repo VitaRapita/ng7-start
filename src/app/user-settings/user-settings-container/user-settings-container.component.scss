@@ -1,0 +1,30 @@
+@import '../../../styles/variables';
+
+.user-form {
+  width: 60%;
+  min-width: 700px;
+  text-align: center;
+  margin: 0 auto;
+
+  .images-block {
+    button {
+      background-color: $blue-button-color;
+    }
+  }
+
+  .submit-btn {
+    width: 120px;
+    background-color: $blue-button-color;
+    color: white;
+  }
+}
+
+.cropper-img-input {
+  opacity: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

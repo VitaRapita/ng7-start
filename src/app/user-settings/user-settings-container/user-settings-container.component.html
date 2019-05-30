@@ -1,0 +1,137 @@
+<div class="page-header"><h3>Account</h3></div>
+<section class="bg-wrapper p-3">
+  <form class="user-form" (ngSubmit)="save()" [formGroup]="userForm">
+    <div class="row my-5">
+      <div class="images-block col-4 text-center">
+        <h4>Profile afbeelding</h4>
+        <img *ngIf="userForm.get('profileImage').value" [src]="userForm.get('profileImage').value">
+        <!--<bb-image-cropper *ngIf="imageChangedEvent" (changeImage)="changeProfileImage($event)" [imageChangedEvent]="imageChangedEvent"></bb-image-cropper>-->
+        <div class="row justify-content-center my-3">
+          <button mat-mini-fab class="mx-3" (click)="openCropDialog('profile')">
+            <i class="material-icons">
+              image
+            </i>
+          </button>
+          <button mat-mini-fab class="mx-3">
+            <i class="material-icons">
+              crop
+            </i>
+          </button>
+          <button mat-mini-fab class="mx-3">
+            <i class="material-icons">
+              replay
+            </i>
+          </button>
+        </div>
+
+        <h4>Teamfoto</h4>
+        <img *ngIf="userForm.get('teamPhoto').value" [src]="userForm.get('teamPhoto').value">
+        <div class="row justify-content-center my-3">
+          <button mat-mini-fab class="mx-3" (click)="openCropDialog('team')">
+            <i class="material-icons">
+              image
+            </i>
+          </button>
+          <button mat-mini-fab class="mx-3">
+            <i class="material-icons">
+              crop
+            </i>
+          </button>
+          <button mat-mini-fab class="mx-3">
+            <i class="material-icons">
+              replay
+            </i>
+          </button>
+        </div>
+      </div>
+
+      <div class="info-block col-8">
+        <mat-form-field class="form-group full-width">
+          <input matInput
+                 placeholder="E-mail"
+                 type="email"
+                 formControlName="email"
+                 [ngClass]="{'is-invalid': emailMessage }"/>
+          <span [ngClass]="{'invalid-feedback' : emailMessage }">
+          {{emailMessage}}
+        </span>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width">
+          <input matInput
+                 type="tel"
+                 placeholder="Telefoon"
+                 formControlName="phone"
+                 [ngClass]="{'is-invalid': !userForm.get('phone').valid}"/>
+        </mat-form-field>
+        <span class="invalid-massage" *ngIf="(userForm.get('phone').touched || userForm.get('phone').dirty) && !userForm.get('phone').valid">
+          Please enter your phone number.
+        </span>
+
+        <mat-form-field class="form-group full-width">
+          <input matInput
+                 type="text"
+                 placeholder="Naam"
+                 formControlName="name"
+                 [ngClass]="{'is-invalid': (userForm.get('name').touched || userForm.get('name').dirty) && !userForm.get('name').valid}"/>
+          <span class="invalid-feedback">
+          <span *ngIf="userForm.get('name').errors?.required">
+            Please enter your first name.
+          </span>
+          <span *ngIf="userForm.get('name').errors?.minlength">
+             The first name must be longer than 3 characters.
+          </span>
+        </span>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width">
+          <input matInput
+                 type="text"
+                 placeholder="Rollen"
+                 formControlName="role"
+                 [ngClass]="{'is-invalid': (userForm.get('role').touched || userForm.get('role').dirty) && !userForm.get('role').valid}"/>
+          <span class="invalid-feedback">
+          <span *ngIf="userForm.get('role').errors?.required">
+            Please enter your last name.
+          </span>
+          <span *ngIf="userForm.get('role').errors?.minlength">
+             The first name must be longer than 3 characters.
+          </span>
+        </span>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width">
+          <input matInput
+                 type="text"
+                 placeholder="Assistent"
+                 formControlName="assistant"
+                 [ngClass]="{'is-invalid': (userForm.get('assistant').touched || userForm.get('assistant').dirty) && userForm.get('assistant').valid}"/>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width">
+          <mat-label for="storeASMId">ASM Winkel</mat-label>
+          <mat-select id="storeASMId" formControlName="storeASM">
+            <mat-option value="store 1">store 1</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width">
+          <mat-label for="storeId">Winkel*</mat-label>
+          <mat-select id="storeId" formControlName="storeId">
+            <mat-option value="0001">0001</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-raised-button
+            type="submit"
+            class="blue-btn"
+            [title]="userForm.valid ? 'Save' : 'Disabled'"
+            [disabled]="!userForm.valid">
+      Opsalaan
+    </button>
+  </form>
+</section>
