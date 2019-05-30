@@ -8,8 +8,8 @@ import {
 @Component({
   selector: 'bb-article-preview',
   templateUrl: './article-preview.component.html',
-  styleUrls: ['./article-preview.component.scss']
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./article-preview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticlePreviewComponent implements OnInit {
   @Input()
@@ -18,8 +18,6 @@ export class ArticlePreviewComponent implements OnInit {
   articleForm;
   @Input()
   selectSign;
-
-  constructor() {}
 
   ngOnInit() {}
 }

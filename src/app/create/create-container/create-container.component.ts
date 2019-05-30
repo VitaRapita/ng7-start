@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -40,7 +45,8 @@ export interface SignatureType {
 @Component({
   selector: 'bb-create-container',
   templateUrl: './create-container.component.html',
-  styleUrls: ['./create-container.component.scss']
+  styleUrls: ['./create-container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateContainerComponent implements OnInit {
   articleForm: FormGroup;
@@ -51,7 +57,8 @@ export class CreateContainerComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private createService: CreateService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -73,6 +80,7 @@ export class CreateContainerComponent implements OnInit {
       .getArticleDetails()
       .subscribe((data: [ArticleDetails]) => {
         this.articleDetails = data[0];
+        this.cdr.detectChanges();
       });
   }
 
@@ -84,6 +92,7 @@ export class CreateContainerComponent implements OnInit {
         this.selectSign = this.signatureTypes.find(
           obj => obj.id === this.articleForm.value.regardsId
         );
+        this.cdr.detectChanges();
       });
   }
 
@@ -96,10 +105,12 @@ export class CreateContainerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.articleDetails.logo = result;
+      this.cdr.detectChanges();
     });
   }
 
   resetImage() {
     this.articleDetails.logo = '';
+    this.cdr.detectChanges();
   }
 }
