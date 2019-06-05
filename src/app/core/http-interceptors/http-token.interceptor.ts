@@ -1,4 +1,4 @@
-import { Injectable, Injector, ErrorHandler } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -7,7 +7,7 @@ import {
   HttpRequest,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
@@ -39,13 +39,13 @@ export class TokenInterceptor implements HttpInterceptor {
     );
   }
 
-  onSuccess(event) {
+  onSuccess(event: any) {
     if (event instanceof HttpResponse) {
       // Intercepting HTTP responses
     }
   }
 
-  onError(error) {
+  onError(error: any) {
     if (error instanceof HttpErrorResponse) {
       console.log('%cHttp error message: ' + error.message, this.logStyle);
     }

@@ -50,11 +50,7 @@
           <input matInput
                  placeholder="E-mail"
                  type="email"
-                 formControlName="email"
-                 [ngClass]="{'is-invalid': emailMessage }"/>
-          <span [ngClass]="{'invalid-feedback' : emailMessage }">
-          {{emailMessage}}
-        </span>
+                 formControlName="email"/>
         </mat-form-field>
 
         <mat-form-field class="form-group full-width">
@@ -63,6 +59,9 @@
                  placeholder="Telefoon"
                  formControlName="phone"
                  [ngClass]="{'is-invalid': !userForm.get('phone').valid}"/>
+          <span [ngClass]="{'invalid-feedback' : phoneMessage }">
+            {{phoneMessage}}
+          </span>
         </mat-form-field>
         <span class="invalid-massage" *ngIf="(userForm.get('phone').touched || userForm.get('phone').dirty) && !userForm.get('phone').valid">
           Please enter your phone number.

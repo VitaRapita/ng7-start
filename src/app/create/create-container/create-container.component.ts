@@ -2,66 +2,36 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
   OnInit
 } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  AbstractControl,
-  ValidatorFn
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateService } from '../services/create.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CropperDialogComponent } from '../../shared/dialogs/cropper-dialog/cropper-dialog.component';
+import IArticleDetails from '../../interfaces/articleDetails';
+import ISignatureType from '../../interfaces/signatureType';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
-export interface ArticleDetails {
-  id: number;
-  supermarketName: string;
-  storeName: string;
-  storeText: string;
-  logo: string;
-  titleImage: string;
-  articleText: string;
-  ctaText: string;
-  ctaLink: string;
-}
-
-export interface SignatureType {
-  id: number;
-  signatureType: string;
-  nameSupermarketManager: boolean;
-  nameAssistantManager: boolean;
-  title: boolean;
-  street: boolean;
-  houseNumber: boolean;
-  cityAsTitle: boolean;
-  city: boolean;
-  phone: boolean;
-  email: boolean;
-  entrepreneur: boolean;
-}
-
+@AutoUnsubscribe()
 @Component({
   selector: 'bb-create-container',
   templateUrl: './create-container.component.html',
   styleUrls: ['./create-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateContainerComponent implements OnInit {
+export class CreateContainerComponent implements OnInit, OnDestroy {
   articleForm: FormGroup;
-  articleDetails;
-  signatureTypes;
-  selectSign;
+  articleDetails?: IArticleDetails;
+  signatureTypes: ISignatureType[] = [];
+  selectSign: any;
 
   constructor(
     private fb: FormBuilder,
     private createService: CreateService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.articleForm = this.fb.group({
       articleText: ['', [Validators.required]],
       ctaText: ['', [Validators.required]],
@@ -70,7 +40,9 @@ export class CreateContainerComponent implements OnInit {
       regardsId: 1,
       addEmail: true
     });
+  }
 
+  ngOnInit() {
     this.getArticleDetails();
     this.getSignatureTypes();
   }
@@ -78,7 +50,7 @@ export class CreateContainerComponent implements OnInit {
   getArticleDetails() {
     this.createService
       .getArticleDetails()
-      .subscribe((data: [ArticleDetails]) => {
+      .subscribe((data: IArticleDetails[]) => {
         this.articleDetails = data[0];
         this.cdr.detectChanges();
       });
@@ -87,7 +59,7 @@ export class CreateContainerComponent implements OnInit {
   getSignatureTypes() {
     this.createService
       .getSignatureTypes()
-      .subscribe((data: [SignatureType]) => {
+      .subscribe((data: ISignatureType[]) => {
         this.signatureTypes = data;
         this.selectSign = this.signatureTypes.find(
           obj => obj.id === this.articleForm.value.regardsId
@@ -96,21 +68,27 @@ export class CreateContainerComponent implements OnInit {
       });
   }
 
-  getSignTypeOptions(typeId) {
+  getSignTypeOptions(typeId: number) {
     this.selectSign = this.signatureTypes.find(obj => obj.id === typeId);
   }
 
   openCropDialog() {
-    const dialogRef = this.dialog.open(CropperDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.articleDetails.logo = result;
-      this.cdr.detectChanges();
-    });
+    this.dialog
+      .open(CropperDialogComponent)
+      .afterClosed()
+      .subscribe(result => this.setLogo(result));
   }
 
   resetImage() {
-    this.articleDetails.logo = '';
-    this.cdr.detectChanges();
+    this.setLogo();
   }
+
+  setLogo(logo: string = '') {
+    if (this.articleDetails) {
+      this.articleDetails.logo = logo;
+      this.cdr.detectChanges();
+    }
+  }
+
+  ngOnDestroy() {}
 }

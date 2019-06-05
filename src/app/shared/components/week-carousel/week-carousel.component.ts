@@ -8,13 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class WeekCarouselComponent implements OnInit {
   currentIndex = 0;
   infinite = true;
-  weeks = Array.from({ length: 54 }, (v, k) => k + 1);
+  weeks = Array.from({ length: 5 }, (_, k) => k + 1);
 
   constructor() {}
 
-  click(i) {
+  click(i: number) {
     this.currentIndex = i - 1;
-    // alert(`${i}`);
   }
 
   ngOnInit() {}

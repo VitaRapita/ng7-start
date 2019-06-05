@@ -1,3 +1,103 @@
-<section class="bg-wrapper p-3">
-  <div class="page-header"><h1>Reporting-container works!</h1></div>
-</section>
+<div class="page-header"><h2>Admin dashboard</h2></div>
+<div class="row justify-content-center">
+  <div class="mx-3 w-25">
+    <section class="bg-wrapper p-3 my-3">
+      <h3>Overzicht</h3>
+      <div class="row p-3">
+        <div class="row px-3 w-50">
+          <i class="material-icons mx-3">send</i>
+          <p>18426<br/>Gepubliceerd</p>
+        </div>
+        <div class="row px-3 w-50">
+          <i class="material-icons mx-3">crop_original</i>
+          <p>1599<br/>Concepten</p>
+        </div>
+      </div>
+      <div class="row p-3">
+        <div class="row px-3 w-50">
+          <i class="material-icons mx-3">cake</i>
+          <p>Winkel 1042</p>
+        </div>
+        <div class="row px-3 w-50">
+          <i class="material-icons mx-3">mood</i>
+          <p>Winkel 1341</p>
+        </div>
+      </div>
+    </section>
+    <section class="bg-wrapper p-3 my-3">
+      <h3>Rapportage</h3>
+      <form class="user-form"  [formGroup]="reportForm">
+        <mat-form-field class="form-group w-50 px-3">
+          <mat-label for="omsId">OM`s</mat-label>
+          <mat-select id="omsId" formControlName="oms" (ngModelChange)="filterChange()">
+            <mat-option value="store 1">store 1</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group w-50 px-3">
+          <mat-label for="regionsId">Regios</mat-label>
+          <mat-select id="regionsId" formControlName="regions" (ngModelChange)="filterChange()">
+            <mat-option value="0001">0001</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width px-3">
+          <mat-label for="storesId">Winkels</mat-label>
+          <mat-select id="storesId" formControlName="stores" (ngModelChange)="filterChange()">
+            <mat-option value="store 1">store 1</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group full-width px-3">
+          <mat-label for="unitId">Eenheid</mat-label>
+          <mat-select id="unitId" formControlName="unit" (ngModelChange)="filterChange()">
+            <mat-option value="store 1">store 1</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group w-50 px-3">
+          <mat-label for="sortById">Sorteren op</mat-label>
+          <mat-select id="sortById" formControlName="sortBy" (ngModelChange)="filterChange()">
+            <mat-option value="0001">0001</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-group w-50 px-3">
+          <mat-label for="toonId">Toon</mat-label>
+          <mat-select id="toonId" formControlName="toon" (ngModelChange)="filterChange()">
+            <mat-option value="0001">0001</mat-option>
+            <mat-option value="store 2">store 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </section>
+  </div>
+  <section class="bg-wrapper my-3 p-3 chart">
+    <combo-chart-component *ngIf="barChart && lineChartSeries"
+      [view]="view"
+      [scheme]="comboBarScheme"
+      [colorSchemeLine]="lineChartScheme"
+      [results]="barChart"
+      [animations]="animations"
+      [lineChart]="lineChartSeries"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [legendTitle]="legendTitle"
+      [legendPosition]="legendPosition"
+      [showGridLines]="showGridLines"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [showRightYAxisLabel]="showRightYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [yAxisLabelRight]="yAxisLabelRight">
+    </combo-chart-component>
+  </section>
+</div>

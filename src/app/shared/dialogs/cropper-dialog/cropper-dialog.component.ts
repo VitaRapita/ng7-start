@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cropper-dialog.component.scss']
 })
 export class CropperDialogComponent implements OnInit {
-  image;
+  image: any = '';
 
   constructor() {}
 
   ngOnInit() {}
 
-  changeImage(event) {
+  changeImage(event: any) {
     this.image = event;
   }
 }

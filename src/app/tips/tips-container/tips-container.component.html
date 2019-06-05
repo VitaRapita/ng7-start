@@ -1,4 +1,81 @@
 <bb-week-carousel></bb-week-carousel>
-<section class="bg-wrapper p-3">
-
+<section class="bg-wrapper p-3 my-3 text-center">
+  <img [src]="titleImage" alt="Please add title image">
+  <div class="row justify-content-center my-3">
+    <button mat-mini-fab class="blue-btn mx-3" (click)="openCropDialog()">
+      <i class="material-icons">
+        image
+      </i>
+    </button>
+    <button mat-mini-fab class="blue-btn mx-3">
+      <i class="material-icons">
+        crop
+      </i>
+    </button>
+    <button mat-mini-fab class="blue-btn mx-3" [disabled]="!titleImage">
+      <i class="material-icons">
+        replay
+      </i>
+    </button>
+    <button mat-mini-fab class="blue-btn mx-3">
+      <i class="material-icons">
+        close
+      </i>
+    </button>
+  </div>
+</section>
+<section class="bg-wrapper p-3 my-3">
+  <quill-editor
+    [(ngModel)]="htmlText"
+    [styles]="{height: '250px'}"
+    placeholder="Enter Text">
+    <div quill-editor-toolbar>
+      <span class="ql-formats">
+        <button class="ql-header" value="1"></button>
+        <button class="ql-header" value="2"></button>
+        <button class="ql-blockquote"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-bold" [title]="'Bold'"></button>
+        <button class="ql-italic" [title]="'Italic'"></button>
+        <button class="ql-underline" [title]="'Underline'"></button>
+        <button class="ql-strike"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-align" value="center"></button>
+        <button class="ql-align" value="right"></button>
+        <button class="ql-align" value="justify"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-color"></select>
+        <select class="ql-background"></select>
+      </span>
+      <span class="ql-formats">
+        <button class="ql-indent" value="-1"></button>
+        <button class="ql-indent" value="+1"></button>
+        <button class="ql-code-block"></button>
+      </span>
+      <span class="ql-formats">
+        <select class="ql-font">
+          <option selected></option>
+          <option value="serif"></option>
+          <option value="monospace"></option>
+        </select>
+        <select class="ql-size">
+          <option value="small"></option>
+          <option selected></option>
+          <option value="large"></option>
+          <option value="huge"></option>
+        </select>
+      </span>
+    </div>
+  </quill-editor>
+  <div class="row justify-content-start p-3">
+    <button mat-raised-button class="blue-btn mx-3">Opsalaan</button>
+    <mat-slide-toggle class="mx-3 py-2" [color]= "sliderColor">Gepublioceerd</mat-slide-toggle>
+  </div>
 </section>

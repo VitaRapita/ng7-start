@@ -8,19 +8,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-
-export interface User {
-  id: number;
-  // photo: string,
-  name: string;
-  email: string;
-  storeId: string;
-  lastLogin: string;
-  numberOfLogins: string;
-  role: string;
-  active: boolean;
-  admin: boolean;
-}
+import IUserSettings from '../../interfaces/user-settings';
 
 @Component({
   selector: 'bb-admin-users-table',
@@ -40,15 +28,15 @@ export class AdminUsersTableComponent implements OnInit {
     'active',
     'admin'
   ];
-  dataSource: MatTableDataSource<User>;
+  dataSource!: MatTableDataSource<IUserSettings>;
   sliderColor = 'primary';
 
   @Input()
-  users: [User];
+  users!: [IUserSettings];
   @ViewChild(MatPaginator)
-  paginator: MatPaginator;
+  paginator!: MatPaginator;
   @ViewChild(MatSort)
-  sort: MatSort;
+  sort!: MatSort;
   @Output()
   changeSlider = new EventEmitter();
 

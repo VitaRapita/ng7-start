@@ -6,19 +6,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-
-export interface Store {
-  id: number;
-  storeId: string;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  region: string;
-  assistant: string;
-}
+import IStore from '../../interfaces/store';
 
 @Component({
   selector: 'bb-admin-stores-table',
@@ -39,15 +27,15 @@ export class AdminStoresTableComponent implements OnInit {
     'region',
     'assistant'
   ];
-  dataSource: MatTableDataSource<Store>;
+  dataSource!: MatTableDataSource<IStore>;
   sliderColor = 'primary';
 
   @Input()
-  stores: [Store];
+  stores!: IStore[];
   @ViewChild(MatPaginator)
-  paginator: MatPaginator;
+  paginator!: MatPaginator;
   @ViewChild(MatSort)
-  sort: MatSort;
+  sort!: MatSort;
 
   constructor() {}
 

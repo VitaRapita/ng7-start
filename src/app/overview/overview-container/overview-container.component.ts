@@ -1,27 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { OverviewService } from '../services/overview.service';
+import IArticle from '../../interfaces/article';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
-export interface Article {
-  id: number;
-  photo: string;
-  name: string;
-  storeId: string;
-  articleName: string;
-  editDate: string;
-  type: string;
-  week: string;
-  year: string;
-  ready: boolean;
-  status: string;
-}
-
+@AutoUnsubscribe()
 @Component({
   selector: 'bb-overview-container',
   templateUrl: './overview-container.component.html',
   styleUrls: ['./overview-container.component.scss']
 })
-export class OverviewContainerComponent implements OnInit {
+export class OverviewContainerComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     'edit',
     'name',
@@ -34,13 +23,13 @@ export class OverviewContainerComponent implements OnInit {
     'status',
     'reject'
   ];
-  dataSource: MatTableDataSource<Article>;
-  articles: [Article];
+  dataSource!: MatTableDataSource<IArticle>;
+  articles: IArticle[] = [];
 
   @ViewChild(MatPaginator)
-  paginator: MatPaginator;
+  paginator!: MatPaginator;
   @ViewChild(MatSort)
-  sort: MatSort;
+  sort!: MatSort;
 
   constructor(private overviewService: OverviewService) {}
 
@@ -64,9 +53,11 @@ export class OverviewContainerComponent implements OnInit {
   }
 
   getArticles() {
-    this.overviewService.getArticles().subscribe((data: [Article]) => {
+    this.overviewService.getArticles().subscribe((data: [IArticle]) => {
       this.articles = data;
       this.setTableData();
     });
   }
+
+  ngOnDestroy() {}
 }

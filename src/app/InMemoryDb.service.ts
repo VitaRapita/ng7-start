@@ -623,13 +623,65 @@ export class InMemoryDataService implements InMemoryDbService {
       }
     ];
 
+    const barChart = [
+      {
+        name: 'USA',
+        value: 45000
+      },
+      {
+        name: 'United Kingdom',
+        value: 30000
+      },
+      {
+        name: 'France',
+        value: 9000
+      },
+      {
+        name: 'Japan',
+        value: 4000
+      },
+      {
+        name: 'China',
+        value: 400
+      }
+    ];
+    const lineChart = [
+      {
+        name: 'gepubliceerd',
+        series: [
+          {
+            name: 'USA',
+            value: 50000
+          },
+          {
+            name: 'United Kingdom',
+            value: 30000
+          },
+          {
+            name: 'France',
+            value: 10000
+          },
+          {
+            name: 'Japan',
+            value: 5000
+          },
+          {
+            name: 'China',
+            value: 500
+          }
+        ]
+      }
+    ];
+
     return {
       users,
       stores,
       articles,
       articleDetails,
       signatureTypes,
-      userSettings
+      userSettings,
+      barChart,
+      lineChart
     };
   }
 }

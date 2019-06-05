@@ -4,6 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy
 } from '@angular/core';
+import IArticleDetails from '../../../interfaces/articleDetails';
 
 @Component({
   selector: 'bb-article-preview',
@@ -13,11 +14,11 @@ import {
 })
 export class ArticlePreviewComponent implements OnInit {
   @Input()
-  articleDetails;
+  articleDetails: IArticleDetails[];
   @Input()
-  articleForm;
+  articleForm!: any;
   @Input()
-  selectSign;
+  selectSign!: any;
 
   ngOnInit() {}
 }

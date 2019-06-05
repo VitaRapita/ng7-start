@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IUser } from '../user-settings-container/user-settings';
+import IUserSettings from '../../interfaces/user-settings';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,14 @@ export class UserSettingsService {
 
   constructor(private http: HttpClient) {}
 
-  public getUserSettings(): Observable<{}> {
-    return this.http.get(`${this.SERVER_URL + 'userSettings'}`);
+  public getUserSettings(): Observable<IUserSettings> {
+    return this.http.get<IUserSettings>(`${this.SERVER_URL + 'userSettings'}`);
   }
 
-  public updateUserSettings(userSettings: IUser): Observable<{}> {
-    return this.http.put(
+  public updateUserSettings(
+    userSettings: IUserSettings
+  ): Observable<IUserSettings> {
+    return this.http.put<IUserSettings>(
       `${this.SERVER_URL + 'userSettings'}/${userSettings.id}`,
       userSettings
     );

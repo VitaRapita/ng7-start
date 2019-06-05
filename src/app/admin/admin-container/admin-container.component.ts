@@ -1,43 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import IUserSettings from '../../interfaces/user-settings';
+import IStore from '../../interfaces/store';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
-export interface IUser {
-  id: number;
-  photo: string;
-  name: string;
-  email: string;
-  storeId: string;
-  lastLogin: string;
-  numberOfLogins: string;
-  role: string;
-  active: boolean;
-  admin: boolean;
-}
-
-export interface IStore {
-  id: number;
-  storeId: string;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  region: string;
-  assistant: string;
-}
-
+@AutoUnsubscribe()
 @Component({
   selector: 'bb-admin-container',
   templateUrl: './admin-container.component.html',
   styleUrls: ['./admin-container.component.scss']
 })
-export class AdminContainerComponent implements OnInit {
+export class AdminContainerComponent implements OnInit, OnDestroy {
   isUsersLoaded = false;
   isStoresLoaded = false;
-  users: [IUser];
-  stores: [IStore];
+  users: IUserSettings[] = [];
+  stores: IStore[] = [];
 
   constructor(private adminService: AdminService) {}
 
@@ -47,7 +24,7 @@ export class AdminContainerComponent implements OnInit {
   }
 
   getUsers() {
-    this.adminService.getUsers().subscribe((data: [IUser]) => {
+    this.adminService.getUsers().subscribe((data: [IUserSettings]) => {
       this.users = data;
       this.isUsersLoaded = true;
     });
@@ -60,7 +37,9 @@ export class AdminContainerComponent implements OnInit {
     });
   }
 
-  changeSliderParent($event) {
+  changeSliderParent($event: any) {
     console.log('event', $event);
   }
+
+  ngOnDestroy() {}
 }

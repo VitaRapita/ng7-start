@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   trigger,
   state,
@@ -8,8 +8,9 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { AuthenticationService } from '../services/authentication.service';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'bb-login-container',
   animations: [
@@ -33,25 +34,23 @@ import { AuthenticationService } from '../services/authentication.service';
   templateUrl: './authentication-container.component.html',
   styleUrls: ['./authentication-container.component.scss']
 })
-export class AuthenticationContainerComponent implements OnInit {
+export class AuthenticationContainerComponent implements OnInit, OnDestroy {
   currentState = 'initial';
-  policies = [];
   loginForm: FormGroup;
-  error;
+  error = '';
 
   constructor(
-    private authService: AuthenticationService,
+    // private authService: AuthenticationService,
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.loginForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
+
+  ngOnInit() {}
 
   toggle() {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
@@ -59,8 +58,8 @@ export class AuthenticationContainerComponent implements OnInit {
 
   login() {
     if (
-      this.loginForm.get('userName').value === 'admin' &&
-      this.loginForm.get('password').value === 'admin123'
+      this.loginForm.value.userName === 'admin' &&
+      this.loginForm.value.password === 'admin123'
     ) {
       this.router.navigate(['/overview']);
     } else {
@@ -68,4 +67,6 @@ export class AuthenticationContainerComponent implements OnInit {
         'Authentication is failed. Please check your username and password';
     }
   }
+
+  ngOnDestroy() {}
 }

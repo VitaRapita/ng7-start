@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  ArticleDetails,
-  SignatureType
-} from '../../create/create-container/create-container.component';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
+import ISignatureType from '../../interfaces/signatureType';
+import IArticleDetails from '../../interfaces/articleDetails';
+import IArticle from '../../interfaces/article';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'bb-article-container',
   templateUrl: './article-container.component.html',
   styleUrls: ['./article-container.component.scss']
 })
-export class ArticleContainerComponent implements OnInit {
-  articlesDetails;
-  articleDetails;
-  signatureTypes;
-  selectSignId;
-  articles;
+export class ArticleContainerComponent implements OnInit, OnDestroy {
+  articlesDetails: IArticleDetails[] = [];
+  signatureTypes: ISignatureType[] = [];
+  articles: IArticle[] = [];
   currentIndex = 0;
 
   constructor(private articleService: ArticleService) {}
@@ -29,7 +28,7 @@ export class ArticleContainerComponent implements OnInit {
   getArticlesDetails() {
     this.articleService
       .getArticleDetails()
-      .subscribe((data: [ArticleDetails]) => {
+      .subscribe((data: [IArticleDetails]) => {
         this.articlesDetails = data;
       });
   }
@@ -37,29 +36,35 @@ export class ArticleContainerComponent implements OnInit {
   getSignatureTypes() {
     this.articleService
       .getSignatureTypes()
-      .subscribe((data: [SignatureType]) => {
+      .subscribe((data: [ISignatureType]) => {
         this.signatureTypes = data;
       });
   }
 
   getArticles() {
-    this.articleService.getArticles().subscribe(data => {
+    this.articleService.getArticles().subscribe((data: [IArticle]) => {
       this.articles = data;
     });
   }
 
-  rejectArticle(id) {
+  rejectArticle(id: number) {
     alert(`Article ${id} rejected!`);
   }
   /* functions getting data for template */
-  currentArticleDetails(id) {
-    return (this.articleDetails = this.articlesDetails.find(
-      obj => obj.id === id
-    ));
+  getCurrentArticleDetails(id: number) {
+    return this.articlesDetails.find(obj => obj.id === id);
   }
 
-  currentSignType() {
-    this.selectSignId = this.articleDetails.regardsId;
-    return this.signatureTypes.find(obj => obj.id === this.selectSignId);
+  currentSignType(id: number) {
+    const currentArticle = this.getCurrentArticleDetails(id);
+
+    if (currentArticle) {
+      return this.signatureTypes.find(
+        obj => obj.id === currentArticle.regardsId
+      );
+    }
+    return false;
   }
+
+  ngOnDestroy() {}
 }

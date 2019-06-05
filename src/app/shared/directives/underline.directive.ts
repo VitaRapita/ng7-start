@@ -1,10 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Renderer,
-  HostListener,
-  HostBinding
-} from '@angular/core';
+import { Directive, ElementRef, Renderer, HostListener } from '@angular/core';
 
 // Annotation section
 @Directive({ selector: '[bbUnderline]' })

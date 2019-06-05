@@ -1,4 +1,6 @@
-export interface IUser {
+import ISignature from './indexSignature.interface';
+
+export default interface IUserSettings extends ISignature {
   id: number;
   email: string;
   phone: string;
