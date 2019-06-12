@@ -1,11 +1,11 @@
 @import '../../../../styles/variables';
 .preview-article {
   &__image {
-    height: 200px;
+    height: 20rem;
     border: 1px solid lightgray;
 
     &.logo {
-      height: 120px;
+      height: 12rem;
     }
   }
 
@@ -22,7 +22,7 @@
   &__custom {
     .client-name {
       font-weight: 700;
-      font-size: 16px;
+      font-size: 1.6rem;
     }
 
     .article-text {

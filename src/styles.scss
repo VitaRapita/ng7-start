@@ -17,11 +17,12 @@ html {
   flex-direction: column;
   font-family: $base-font-family;
 
-  font-size: $base-font-size; //?
+  font-size: 10px;
 }
 
 body {
   background: palette(gray, light);
+  font-size: 1.4rem;
 }
 
 a,
@@ -90,15 +91,15 @@ mark,
 .mark {
   text-transform: uppercase;
   color: palette(white, base);
-  border-radius: 2px;
-  padding: 0 4px;
+  border-radius: 0.2rem;
+  padding: 0 0.4rem;
   font-weight: 700;
   background: palette(green, primary);
 }
 
 dl {
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 dt {
@@ -121,8 +122,8 @@ dd {
 }
 
 .page-header {
-  padding-bottom: 9px;
-  margin: 10px 0;
+  padding-bottom: 0.7rem;
+  margin: 0.8rem 0;
   border-bottom: 1px solid palette(gray, light);
 }
 
@@ -137,7 +138,7 @@ mat-icon {
 *********************/
 
 .navbar-brand {
-  width: 150px;
+  width: 10rem;
   margin-right: 1rem;
   text-align: center;
 
@@ -176,7 +177,6 @@ header {
     text-transform: uppercase;
 
     &:hover {
-      background: palette(gray, base);
     }
 
     &.active {
@@ -233,7 +233,7 @@ body {
 
 .invalid-massage {
   color: red;
-  font-size: 12px;
+  font-size: 0.8rem;
 }
 
 .mat-tab-label {
@@ -249,15 +249,15 @@ body {
 .mat-table {
   .mat-cell {
     img {
-      height: 48px;
-      width: 48px;
+      height: 4.8rem;
+      width: 4.8rem;
       border-radius: 50%;
     }
   }
 }
 
 .data-table {
-  height: 600px;
+  height: 60rem;
   overflow: auto;
   background-color: #fff;
 }
@@ -267,7 +267,7 @@ table {
 }
 
 .mat-form-field {
-  font-size: 14px;
+  font-size: 1.4rem;
   width: 100%;
 }
 
@@ -296,10 +296,11 @@ table {
     color: #fff;
     margin: -24px -24px 0;
     display: flex;
+    font-size: 1.4rem;
     button {
-      height: 28px;
-      width: 28px;
-      line-height: 28px;
+      height: 3rem;
+      width: 3rem;
+      line-height: 3rem;
     }
   }
 

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'bb-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   constructor(private router: Router) {}
