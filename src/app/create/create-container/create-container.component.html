@@ -1,38 +1,38 @@
 <bb-week-carousel></bb-week-carousel>
 <div class="article-constructor">
-  <div class="constructor-block">
+  <div class="article-constructor__block">
     <h4 class="m-3">Artikel aanmaken</h4>
     <section class="bg-wrapper p-3 mx-3">
-      <div class="edit-block py-3">
-        <p class="block-title">Selecter een Grid Type</p>
-        <div class="article-type">
-          <img src="assets/img/no-image.png" class="m-3 active">
-          <img src="assets/img/no-image.png" class="m-3">
+      <div class="article-constructor__block--edit py-3">
+        <p class="article-constructor__block--edit title">Selecter een Grid Type</p>
+        <div class="article-constructor__block--edit text-center">
+          <img src="assets/img/no-image.png" class="m-3 article-constructor__block--image type active">
+          <img src="assets/img/no-image.png" class="m-3 article-constructor__block--image type">
         </div>
       </div>
-      <div class="edit-block py-3">
-        <p class="block-title">Afbeelding</p>
-        <img *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
-        <div class="btn-block py-3">
-          <button class="blue-btn" mat-raised-button (click)="openCropDialog()">
+      <div class="article-constructor__block--edit py-3">
+        <p class="title">Afbeelding</p>
+        <img class="article-constructor__block--image logo" *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
+        <div class="article-constructor__block--buttons py-3">
+          <button class="btn btn-blue" mat-raised-button (click)="openCropDialog()">
             <i class="material-icons">image</i>
             Toevoegen
           </button>
-          <button class="blue-btn"  mat-raised-button>
+          <button class="btn btn-blue"  mat-raised-button>
             <i class="material-icons">crop</i>
             Uitsnijden
           </button>
-          <button class="blue-btn"  mat-raised-button (click)="resetImage()" [disabled]="!articleDetails?.logo">
+          <button class="btn btn-blue"  mat-raised-button (click)="resetImage()" [disabled]="!articleDetails?.logo">
             <i class="material-icons">replay</i>
             Reset
           </button>
-          <button class="blue-btn"  mat-raised-button>
+          <button class="btn btn-blue"  mat-raised-button>
             <i class="material-icons">close</i>
             Verwijderen
           </button>
         </div>
       </div>
-      <div class="edit-block py-3">
+      <div class="article-constructor__block--edit py-3">
         <span class="block-title">Artikel informatie</span>
         <form class="article-form" [formGroup]="articleForm">
           <mat-form-field class="form-group full-width">
@@ -83,22 +83,22 @@
           </mat-checkbox>
         </form>
       </div>
-      <div class="btn-block my-3">
-        <button class="blue-btn"  mat-raised-button>
+      <div class="article-constructor__block--buttons my-3">
+        <button class="btn btn-blue"  mat-raised-button>
           Spellingschecker
         </button>
-        <button class="blue-btn"  mat-raised-button disabled>
+        <button class="btn btn-blue"  mat-raised-button disabled>
           Opslaan
         </button>
       </div>
     </section>
   </div>
 
-  <div class="preview-block">
+  <div class="article-constructor__block--preview">
     <h4 class="m-3">Preview</h4>
     <bb-article-preview [articleDetails]="articleDetails" [articleForm]="articleForm.value" [selectSign]="selectSign"></bb-article-preview>
     <div class="text-center btn-block m-3">
-      <button class="blue-btn" mat-raised-button [disabled]="!articleForm.valid">
+      <button class="btn btn-blue" mat-raised-button [disabled]="!articleForm.valid">
         Klaar voor publicatiexs
       </button>
     </div>

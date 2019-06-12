@@ -9,8 +9,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CreateService } from '../services/create.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CropperDialogComponent } from '../../shared/dialogs/cropper-dialog/cropper-dialog.component';
-import IArticleDetails from '../../interfaces/articleDetails';
-import ISignatureType from '../../interfaces/signatureType';
+import IArticleDetails from '../../interfaces/articleDetails.interface';
+import ISignatureType from '../../interfaces/signatureType.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 @AutoUnsubscribe()

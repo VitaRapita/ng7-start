@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
-import IUserSettings from '../../interfaces/user-settings';
-import IStore from '../../interfaces/store';
+import IUserSettings from '../../interfaces/user-settings.interface';
+import IStore from '../../interfaces/store.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 @AutoUnsubscribe()

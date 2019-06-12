@@ -4,7 +4,7 @@ import { UserSettingsService } from '../services/user-settings.service';
 import { CropperDialogComponent } from '../../shared/dialogs/cropper-dialog/cropper-dialog.component';
 import { debounceTime } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
-import IUserSettings from '../../interfaces/user-settings';
+import IUserSettings from '../../interfaces/user-settings.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 @AutoUnsubscribe()

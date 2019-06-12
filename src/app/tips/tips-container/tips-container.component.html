@@ -2,22 +2,22 @@
 <section class="bg-wrapper p-3 my-3 text-center">
   <img [src]="titleImage" alt="Please add title image">
   <div class="row justify-content-center my-3">
-    <button mat-mini-fab class="blue-btn mx-3" (click)="openCropDialog()">
+    <button mat-mini-fab class="btn btn-blue mx-3" (click)="openCropDialog()">
       <i class="material-icons">
         image
       </i>
     </button>
-    <button mat-mini-fab class="blue-btn mx-3">
+    <button mat-mini-fab class="btn btn-blue mx-3">
       <i class="material-icons">
         crop
       </i>
     </button>
-    <button mat-mini-fab class="blue-btn mx-3" [disabled]="!titleImage">
+    <button mat-mini-fab class="btn btn-blue mx-3" [disabled]="!titleImage">
       <i class="material-icons">
         replay
       </i>
     </button>
-    <button mat-mini-fab class="blue-btn mx-3">
+    <button mat-mini-fab class="btn btn-blue mx-3">
       <i class="material-icons">
         close
       </i>
@@ -75,7 +75,7 @@
     </div>
   </quill-editor>
   <div class="row justify-content-start p-3">
-    <button mat-raised-button class="blue-btn mx-3">Opsalaan</button>
+    <button mat-raised-button class="btn btn-blue mx-3">Opsalaan</button>
     <mat-slide-toggle class="mx-3 py-2" [color]= "sliderColor">Gepublioceerd</mat-slide-toggle>
   </div>
 </section>

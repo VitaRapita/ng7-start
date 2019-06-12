@@ -1,6 +1,6 @@
 @import '../../../../styles/variables';
 .preview-article {
-  img {
+  &__image {
     height: 200px;
     border: 1px solid lightgray;
 
@@ -9,7 +9,7 @@
     }
   }
 
-  .static-block {
+  &__static {
     .store-name {
       background-color: $blue-button-color;
       color: #fff;
@@ -19,7 +19,7 @@
     }
   }
 
-  .custom-block {
+  &__custom {
     .client-name {
       font-weight: 700;
       font-size: 16px;

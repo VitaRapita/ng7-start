@@ -75,9 +75,7 @@ export class ReportingContainerComponent implements OnInit, OnDestroy {
     });
   }
 
-  filterChange() {
-    console.log(this.reportForm.value);
-  }
+  filterChange() {}
 
   ngOnDestroy() {}
 }

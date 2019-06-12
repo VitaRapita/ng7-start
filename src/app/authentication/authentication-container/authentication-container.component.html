@@ -1,31 +1,31 @@
 <div class="login-page">
   <div [@flip]="currentState" class="welcome-card">
     <mat-card [ngClass]="{'rotate-content': currentState === 'final'}">
-      <mat-card-header>
-        <button class="back-btn" mat-icon-button (click)="toggle()" *ngIf="currentState === 'final'">
+      <mat-card-header class="welcome-card__header">
+        <button class="welcome-card__header--back-btn" mat-icon-button (click)="toggle()" *ngIf="currentState === 'final'">
           <mat-icon>keyboard_backspace</mat-icon>
         </button>
-        <mat-card-title>Welkom</mat-card-title>
-        <img class="logo" src="assets/img/ahold-logo.png">
+        <mat-card-title class="welcome-card__header--title">Welkom</mat-card-title>
+        <img class="welcome-card__header--logo" src="assets/img/ahold-logo.png">
       </mat-card-header>
-      <mat-card-content *ngIf="currentState === 'initial'">
+      <mat-card-content class="welcome-card__content" *ngIf="currentState === 'initial'">
         <p>Sign in using your Ahold username and password.</p>
-        <mat-card-actions>
-          <button mat-raised-button (click)="toggle()">Sign In</button>
+        <mat-card-actions class="welcome-card__actions">
+          <button class="btn-signin" mat-raised-button (click)="toggle()">Sign In</button>
         </mat-card-actions>
       </mat-card-content>
-      <mat-card-content *ngIf="currentState === 'final'">
+      <mat-card-content class="welcome-card__content" *ngIf="currentState === 'final'">
         <span class="mat-error" *ngIf="loginForm.errors"> Username or password is incorrect. </span>
         <span  class="mat-error" *ngIf="error">{{ error }}</span>
         <form (ngSubmit)="login()" [formGroup]="loginForm">
-          <mat-form-field class="form-group">
+          <mat-form-field class="form-group welcome-card__content--form-field">
             <input matInput
                    type="text"
                    placeholder="Username"
                    formControlName="userName"
                    [ngClass]="{'is-invalid': (loginForm.get('userName').touched || loginForm.get('userName').dirty) && !loginForm.get('userName').valid}">
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field class="form-group welcome-card__content--form-field">
             <input matInput
                    placeholder="Password"
                    type="password"
@@ -34,6 +34,7 @@
           </mat-form-field>
           <button type="submit"
                   mat-raised-button
+                  class="btn-signin"
                   [title]="loginForm.valid ? 'Sign in' : 'Please enter correct data'"
                   [disabled]="!loginForm.valid">
             Sign In

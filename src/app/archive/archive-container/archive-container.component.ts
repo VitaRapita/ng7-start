@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { OverviewService } from '../../overview/services/overview.service';
-import IArticle from '../../interfaces/article';
+import IArticle from '../../interfaces/article.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 @AutoUnsubscribe()
@@ -42,7 +42,6 @@ export class ArchiveContainerComponent implements OnInit, OnDestroy {
   }
 
   applyFilter(filterValue: string) {
-    console.log(this.dataSource);
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {

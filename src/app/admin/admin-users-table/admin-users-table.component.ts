@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import IUserSettings from '../../interfaces/user-settings';
+import IUserSettings from '../../interfaces/user-settings.interface';
 
 @Component({
   selector: 'bb-admin-users-table',

@@ -14,34 +14,36 @@
     padding: 20px;
     text-align: center;
 
-    .mat-card-header {
+    &__header {
       display: block;
-      .back-btn {
+      &--back-btn {
         position: absolute;
         left: 16px;
         top: 20px;
       }
-      .mat-card-title {
+      &--title {
         font-size: 36px;
       }
-      .logo {
+      &--logo {
         height: 300px;
       }
     }
 
-    .mat-form-field {
-      display: block;
-    }
-    .mat-card-actions {
-      margin: 10px;
-      padding: 0;
-      button {
-        text-transform: uppercase;
+    &__content {
+      &--actions {
+        margin: 10px;
+        padding: 0;
+        .btn-signin {
+          text-transform: uppercase;
+        }
+      }
+      &--form-field {
+        display: block;
       }
     }
-  }
 
-  .rotate-content {
-    transform: rotateY(180deg);
+    .rotate-content {
+      transform: rotateY(180deg);
+    }
   }
 }

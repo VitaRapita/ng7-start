@@ -7,11 +7,11 @@ $transition_time: 0.2s;
 
 .carousel {
   color: white;
-  .content {
+  &__content {
     display: flex;
     transition: all 0.295s linear $transition_time;
 
-    .item {
+    &--item {
       // width: 100%;
       display: block;
       transition: opacity 0.295s linear $transition_time;
@@ -32,20 +32,7 @@ $transition_time: 0.2s;
     }
   }
 
-  .ball {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: black;
-    border: 2px solid;
-    opacity: 0.5;
-
-    &.visible {
-      opacity: 1;
-    }
-  }
-
-  .click-area {
+  &__click-area {
     width: 50px;
     text-align: center;
 

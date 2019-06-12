@@ -4,7 +4,7 @@
     <h6>Gepubliceerde artikelen voor deze week ({{articles[currentIndex]?.week}}-{{articles[currentIndex]?.year}})</h6>
   </div>
   <div class="text-center btn-block">
-    <button class="blue-btn" mat-raised-button (click)="rejectArticle(articles[currentIndex]?.id)">
+    <button class="btn btn-blue" mat-raised-button (click)="rejectArticle(articles[currentIndex]?.id)">
       Afwijzen
     </button>
   </div>
@@ -19,8 +19,8 @@
     [data]="articles"
     class="carousel c-accent">
 
-    <section ngx-hm-carousel-container class="content">
-      <article class="item cursor-pointer" ngx-hm-carousel-item *ngFor="let article of articles">
+    <section ngx-hm-carousel-container class="carousel__content">
+      <article class="carousel__content--item cursor-pointer" ngx-hm-carousel-item *ngFor="let article of articles">
         <bb-article-preview *ngIf="articlesDetails && signatureTypes" class="d-block col-7" [articleDetails]="getCurrentArticleDetails(article?.id)" [selectSign]="currentSignType(article?.id)"></bb-article-preview>
       </article>
       <ng-template #infiniteContainer></ng-template>

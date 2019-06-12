@@ -2,7 +2,7 @@
 <section class="bg-wrapper p-3">
   <form class="user-form" (ngSubmit)="save()" [formGroup]="userForm">
     <div class="row my-5">
-      <div class="images-block col-4 text-center">
+      <div class="user-form__images-block col-4 text-center">
         <h4>Profile afbeelding</h4>
         <img *ngIf="userForm.get('profileImage').value" [src]="userForm.get('profileImage').value">
         <!--<bb-image-cropper *ngIf="imageChangedEvent" (changeImage)="changeProfileImage($event)" [imageChangedEvent]="imageChangedEvent"></bb-image-cropper>-->
@@ -127,7 +127,7 @@
 
     <button mat-raised-button
             type="submit"
-            class="blue-btn"
+            class="btn btn-blue"
             [title]="userForm.valid ? 'Save' : 'Disabled'"
             [disabled]="!userForm.valid">
       Opsalaan

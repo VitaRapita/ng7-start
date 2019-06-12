@@ -1,13 +1,13 @@
 <div class="page-header"><h2>Archief</h2></div>
-<button mat-raised-button class="blue-btn">
+<button mat-raised-button class="btn btn-blue">
   <a routerLink="/article-review">Artikel review</a>
 </button>
 
 <section class="bg-wrapper">
-  <mat-form-field class="p-3" style="width: 50%">
+  <mat-form-field class="p-3 input__width--50">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Winkel">
   </mat-form-field>
-  <mat-form-field class="p-3" style="width: 50%">
+  <mat-form-field class="p-3 input__width--50">
     <mat-select matNativeControl (selectionChange)="filterByWeek($event.value)" placeholder="Week">
       <mat-option value="28">28</mat-option>
       <mat-option value="32">32</mat-option>
@@ -15,7 +15,7 @@
       <mat-option value="36">36</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="p-3">
+  <mat-form-field class="p-3 full-width">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
   <div class="data-table mat-elevation-z8">

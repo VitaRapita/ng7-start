@@ -3,11 +3,11 @@ $transition_time: 0.2s;
 .carousel {
   width: 100%;
   margin: 0 auto;
-  .content {
+  &__content {
     display: flex;
     transition: all 0.295s linear $transition_time;
 
-    .item {
+    &--item {
       width: 100%;
       padding: 0.5em;
       display: block;

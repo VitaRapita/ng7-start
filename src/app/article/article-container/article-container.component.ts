@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
-import ISignatureType from '../../interfaces/signatureType';
-import IArticleDetails from '../../interfaces/articleDetails';
-import IArticle from '../../interfaces/article';
+import ISignatureType from '../../interfaces/signatureType.interface';
+import IArticleDetails from '../../interfaces/articleDetails.interface';
+import IArticle from '../../interfaces/article.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 @AutoUnsubscribe()

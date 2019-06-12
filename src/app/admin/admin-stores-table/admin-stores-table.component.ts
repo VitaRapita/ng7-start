@@ -6,7 +6,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import IStore from '../../interfaces/store';
+import IStore from '../../interfaces/store.interface';
 
 @Component({
   selector: 'bb-admin-stores-table',
