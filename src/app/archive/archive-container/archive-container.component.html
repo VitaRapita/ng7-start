@@ -24,25 +24,31 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Naam </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <td mat-cell *matCellDef="let row">
+          <a [routerLink]="'/create/' + row.id">
+            {{row.author.first_name}}
+          </a>
+        </td>
       </ng-container>
 
       <!-- ID Column -->
       <ng-container matColumnDef="storeId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Winkel ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.storeId}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.store_id}} </td>
       </ng-container>
 
       <!-- Adapted Column -->
       <ng-container matColumnDef="adapted">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Aangepast op</th>
-        <td mat-cell *matCellDef="let row"> {{row.editDate}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.updated | date}} </td>
       </ng-container>
 
       <!-- Type Column -->
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-        <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+        <td mat-cell *matCellDef="let row">
+          <img class="grid" [src]="'assets/img/' + row.grid.title + '.png'" [alt]="row.grid.title">
+        </td>
       </ng-container>
 
       <!-- Week Column -->
@@ -54,7 +60,7 @@
       <!-- Status Column -->
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.state}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
@@ -62,6 +68,12 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator
+      [pageIndex]="currentPage"
+      [pageSize]="pageSize"
+      [length]="totalSize"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page) = "changePage($event)"
+    ></mat-paginator>
   </div>
 </section>

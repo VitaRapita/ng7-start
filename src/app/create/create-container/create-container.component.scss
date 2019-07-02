@@ -1,12 +1,14 @@
 @import '../../../styles/variables';
 .article-constructor {
   display: flex;
+  justify-content: center;
 
   &__block {
-    width: 40%;
+    width: calc(100% - 68rem);
+    max-width: 40%;
 
     &--preview {
-      width: 60%;
+      width: 68rem;
 
       .tips {
         justify-content: flex-end;
@@ -24,6 +26,27 @@
       .material-icons {
         font-size: 1.6rem;
         vertical-align: sub;
+      }
+
+      .input-hidden {
+        position: absolute;
+        left: -9999px;
+      }
+
+      input[type='radio']:checked + label > img {
+        border: 1px solid #fff;
+        box-shadow: 0 0 3px 2px $blue-button-color;
+      }
+
+      /* Stuff after this is only to make things more pretty */
+      input[type='radio'] + label > img {
+        width: 8rem;
+        height: 8rem;
+        cursor: pointer;
+      }
+
+      input[type='radio'] + label {
+        margin: 1rem;
       }
     }
 
@@ -48,6 +71,93 @@
     &--buttons {
       display: flex;
       justify-content: space-around;
+    }
+  }
+}
+
+.preview-article {
+  &__image {
+    height: 25rem;
+    border: 1px solid lightgray;
+
+    &.logo {
+      height: 8rem;
+      width: 8rem;
+      border: none;
+    }
+  }
+
+  &__static {
+    .store-name {
+      background-color: $blue-button-color;
+      color: #fff;
+      img {
+        border: none;
+      }
+    }
+  }
+
+  &__custom {
+    &--header {
+      align-items: center;
+      font-weight: 700;
+      .client-name {
+        color: $blue-button-color;
+        font-size: 1.6rem;
+        margin-bottom: 0;
+      }
+    }
+
+    &--text {
+      height: 15rem;
+      align-items: center;
+
+      .article-text {
+        margin-left: 1rem;
+        position: relative;
+        width: 53rem;
+        height: 15rem;
+        background-color: #f2f2f2;
+
+        p {
+          margin-bottom: 0;
+        }
+
+        span {
+          font-weight: 300;
+          overflow: hidden;
+          width: 100%;
+          font-size: 12px;
+        }
+
+        .btn {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+
+        &:after {
+          content: ' ';
+          position: absolute;
+          left: -15px;
+          top: 50%;
+          transform: translate(0, -50%);
+          border-top: 15px solid transparent;
+          border-right: 15px solid #f2f2f2;
+          border-left: none;
+          border-bottom: 15px solid transparent;
+        }
+      }
+    }
+    .signature {
+      font-weight: 500;
+
+      span {
+        font-weight: 400;
+        &.bold {
+          font-weight: 600;
+        }
+      }
     }
   }
 }

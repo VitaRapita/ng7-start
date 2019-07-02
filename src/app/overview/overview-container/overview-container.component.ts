@@ -1,8 +1,15 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import {
+  MatDialog,
+  MatPaginator,
+  MatSort,
+  MatTableDataSource
+} from '@angular/material';
 import { OverviewService } from '../services/overview.service';
 import IArticle from '../../interfaces/article.interface';
+import IApiArticleResults from '../../interfaces/article.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { ConfirmationDialogComponent } from '../../shared/dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @AutoUnsubscribe()
 @Component({
@@ -30,11 +37,17 @@ export class OverviewContainerComponent implements OnInit, OnDestroy {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+  pageSize = 5;
+  currentPage = 0;
+  totalSize = 0;
 
-  constructor(private overviewService: OverviewService) {}
+  constructor(
+    private overviewService: OverviewService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.getArticles();
+    this.getArticles(this.pageSize, this.currentPage + 1);
   }
 
   applyFilter(filterValue: string) {
@@ -52,10 +65,49 @@ export class OverviewContainerComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
-  getArticles() {
-    this.overviewService.getArticles().subscribe((data: [IArticle]) => {
-      this.articles = data;
-      this.setTableData();
+  getArticles(count: number, page: number) {
+    this.overviewService
+      .getArticles(count, page)
+      .subscribe((data: IApiArticleResults) => {
+        this.articles = data.results;
+        this.setTableData();
+      });
+  }
+
+  deleteArticle(id) {
+    this.overviewService.deleteArticle(id).subscribe((data: any) => {
+      this.getArticles(this.pageSize, this.currentPage + 1);
+    });
+  }
+
+  declineArticle(id) {
+    this.overviewService.declineArticle(id).subscribe((data: any) => {
+      this.getArticles(this.pageSize, this.currentPage + 1);
+    });
+  }
+
+  changePage(event: any) {
+    this.getArticles(event.pageSize, event.pageIndex + 1);
+  }
+
+  openDialog(id, action): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '50rem',
+      data: `Do you confirm the ${action} of this data?`
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        switch (action) {
+          case 'delete':
+            this.deleteArticle(id);
+            break;
+          case 'decline':
+            this.declineArticle(id);
+            break;
+          default:
+            break;
+        }
+      }
     });
   }
 

@@ -1,14 +1,19 @@
-import ISignature from './indexSignature.interface';
-
-export default interface IUserSettings extends ISignature {
+export default interface IUserSettings {
   id: number;
   email: string;
   phone: string;
   name: string;
+  firstName: string;
+  lastName: string;
   role: string;
   assistant: string;
-  storeASM: string;
   storeId: number;
+  storeASM: string;
+  store: {
+    title: string;
+    companyId: number;
+    storeId: number;
+  };
   profileImg: string;
   teamPhoto: string;
 }

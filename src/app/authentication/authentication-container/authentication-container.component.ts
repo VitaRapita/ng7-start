@@ -9,6 +9,7 @@ import {
   transition
 } from '@angular/animations';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { AuthenticationService } from '../services/authentication.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -42,10 +43,11 @@ export class AuthenticationContainerComponent implements OnInit, OnDestroy {
   constructor(
     // private authService: AuthenticationService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
@@ -56,16 +58,17 @@ export class AuthenticationContainerComponent implements OnInit, OnDestroy {
     this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
   }
 
-  login() {
-    if (
-      this.loginForm.value.userName === 'admin' &&
-      this.loginForm.value.password === 'admin123'
-    ) {
-      this.router.navigate(['/overview']);
-    } else {
-      this.error =
-        'Authentication is failed. Please check your username and password';
-    }
+  authentication() {
+    this.authService.authentication(this.loginForm.value).subscribe(
+      (data: any) => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        this.router.navigate(['/overview']);
+      },
+      () => {
+        this.error = `Authentication is failed. Please check your username and password`;
+      }
+    );
   }
 
   ngOnDestroy() {}

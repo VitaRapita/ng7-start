@@ -2,24 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import IUserSettings from '../../interfaces/user-settings.interface';
+import { environment } from '@env/environment';
+
+const API_URL = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserSettingsService {
-  SERVER_URL = 'api/';
-
   constructor(private http: HttpClient) {}
 
-  public getUserSettings(): Observable<IUserSettings> {
-    return this.http.get<IUserSettings>(`${this.SERVER_URL + 'userSettings'}`);
+  public getUserSettings(id): Observable<IUserSettings> {
+    return this.http.get<IUserSettings>(`${API_URL}users/${id}`);
   }
 
   public updateUserSettings(
     userSettings: IUserSettings
   ): Observable<IUserSettings> {
     return this.http.put<IUserSettings>(
-      `${this.SERVER_URL + 'userSettings'}/${userSettings.id}`,
+      `${API_URL}users/${userSettings.id}`,
       userSettings
     );
   }

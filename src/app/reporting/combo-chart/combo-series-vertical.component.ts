@@ -88,7 +88,8 @@ export class ComboSeriesVerticalComponent implements OnChanges {
   x: any;
   y: any;
 
-  ngOnChanges(changes: any): void {
+  // ngOnChanges(changes: any): void {
+  ngOnChanges(): void {
     this.update();
   }
 
@@ -103,7 +104,7 @@ export class ComboSeriesVerticalComponent implements OnChanges {
     let total: number;
     if (this.type === 'normalized') {
       total = this.series
-        .map(d => d.value)
+        .map((d: any) => d.value)
         .reduce((sum: any, d: any) => sum + d, 0);
     }
 
@@ -187,7 +188,7 @@ export class ComboSeriesVerticalComponent implements OnChanges {
 
       this.getSeriesTooltips(this.seriesLine, index);
       const lineValue = this.seriesLine[0].series[index].value;
-      const lineName = this.seriesLine[0].series[index].name;
+      // const lineName = this.seriesLine[0].series[index].name;
       bar.tooltipText = `
         <span class="tooltip-label">${tooltipLabel}</span>
         <span class="tooltip-val"> Y1 - ${value.toLocaleString()} • Y2 - ${lineValue.toLocaleString()}%</span>
@@ -197,7 +198,7 @@ export class ComboSeriesVerticalComponent implements OnChanges {
     });
   }
   getSeriesTooltips(seriesLine: any, index: number) {
-    return seriesLine.map(d => {
+    return seriesLine.map((d: any) => {
       return d.series[index];
     });
   }

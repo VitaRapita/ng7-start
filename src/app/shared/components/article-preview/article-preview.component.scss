@@ -2,7 +2,6 @@
 .preview-article {
   &__image {
     height: 20rem;
-    border: 1px solid lightgray;
 
     &.logo {
       height: 12rem;
@@ -10,33 +9,72 @@
   }
 
   &__static {
-    .store-name {
-      background-color: $blue-button-color;
-      color: #fff;
-      img {
-        border: none;
-      }
+    //.store-name {
+    //  background-color: $blue-button-color;
+    //  color: #fff;
+    //  img {
+    //    border: none;
+    //  }
+    //}
+    background-color: $blue-button-color;
+    margin: 0 -5rem;
+    height: 20rem;
+    img {
+      width: 6rem;
+      margin-top: 3rem;
     }
   }
 
   &__custom {
-    .client-name {
-      font-weight: 700;
-      font-size: 1.6rem;
+    margin-top: -8rem;
+    z-index: 9;
+
+    &--content {
+      &.grid1 {
+        .img-block {
+          float: left;
+          width: 20%;
+          margin-right: 1rem;
+
+          .article-img {
+            width: 100%;
+          }
+        }
+      }
+
+      &.grid2 {
+        .text-block {
+          float: left;
+        }
+
+        .article-img {
+          width: 50%;
+        }
+      }
+
+      .client-name {
+        font-weight: 700;
+        font-size: 2rem;
+      }
+
+      .article-text {
+        font-size: 1.4rem;
+      }
     }
 
-    .article-text {
-      font-style: italic;
-      font-weight: 300;
-    }
+    &--sign {
+      .preview-article__image.logo {
+        height: 8rem;
+      }
+      .signature {
+        font-weight: 500;
 
-    .signature {
-      font-weight: 500;
-
-      span {
-        font-weight: 400;
-        &.bold {
-          font-weight: 600;
+        span {
+          font-weight: 400;
+          font-size: 1.2rem;
+          &.bold {
+            font-weight: 600;
+          }
         }
       }
     }

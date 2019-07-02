@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserSettingsContainerComponent } from './user-settings-container/user-settings-container.component';
 
 const routes: Routes = [
-  { path: '', component: UserSettingsContainerComponent }
+  { path: '', component: UserSettingsContainerComponent },
+  { path: ':userId', component: UserSettingsContainerComponent }
 ];
 
 @NgModule({

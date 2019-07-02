@@ -10,7 +10,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     CommonModule,
     HttpClientModule
   ],
-  providers: [httpInterceptorProviders]
+  providers: [...httpInterceptorProviders]
 })
 export class CoreModule {
   constructor(

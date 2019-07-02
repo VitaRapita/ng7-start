@@ -24,15 +24,17 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   }
 
   getUsers() {
-    this.adminService.getUsers().subscribe((data: [IUserSettings]) => {
-      this.users = data;
+    // this.adminService.getUsers().subscribe((data: [IUserSettings]) => {
+    this.adminService.getUsers().subscribe((data: any) => {
+      this.users = data.results;
       this.isUsersLoaded = true;
     });
   }
 
   getStores() {
-    this.adminService.getStores().subscribe((data: [IStore]) => {
-      this.stores = data;
+    // this.adminService.getStores().subscribe((data: IStore[]) => {
+    this.adminService.getStores().subscribe((data: any) => {
+      this.stores = data.results;
       this.isStoresLoaded = true;
     });
   }

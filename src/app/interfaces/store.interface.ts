@@ -1,12 +1,16 @@
 export default interface IStore {
   id: number;
-  storeId: string;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
+  company: {
+    code: string;
+    title: string;
+  };
+  title: string;
   city: string;
-  postalCode: string;
   region: string;
-  assistant: string;
+  phone: string;
+  postalCode: string;
+  address: string;
+  email: string;
+  teamPhoto: string;
+  companyId: number;
 }

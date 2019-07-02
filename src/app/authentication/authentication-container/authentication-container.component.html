@@ -17,13 +17,13 @@
       <mat-card-content class="welcome-card__content" *ngIf="currentState === 'final'">
         <span class="mat-error" *ngIf="loginForm.errors"> Username or password is incorrect. </span>
         <span  class="mat-error" *ngIf="error">{{ error }}</span>
-        <form (ngSubmit)="login()" [formGroup]="loginForm">
+        <form (ngSubmit)="authentication()" [formGroup]="loginForm">
           <mat-form-field class="form-group welcome-card__content--form-field">
             <input matInput
                    type="text"
-                   placeholder="Username"
-                   formControlName="userName"
-                   [ngClass]="{'is-invalid': (loginForm.get('userName').touched || loginForm.get('userName').dirty) && !loginForm.get('userName').valid}">
+                   placeholder="Email"
+                   formControlName="email"
+                   [ngClass]="{'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid}">
           </mat-form-field>
           <mat-form-field class="form-group welcome-card__content--form-field">
             <input matInput

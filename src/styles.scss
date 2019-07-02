@@ -204,6 +204,7 @@ header {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-width: 1280px;
 }
 
 .app-body {
@@ -252,6 +253,12 @@ body {
       height: 4.8rem;
       width: 4.8rem;
       border-radius: 50%;
+
+      &.grid {
+        border-radius: 0;
+        height: 2.5rem;
+        width: 2.5rem;
+      }
     }
   }
 }
@@ -264,6 +271,11 @@ body {
 
 table {
   width: 100%;
+
+  td a {
+    color: inherit;
+    cursor: pointer;
+  }
 }
 
 .mat-form-field {
@@ -272,17 +284,29 @@ table {
 }
 
 /****** Buttons *****/
-.btn-blue {
-  background-color: $blue-button-color;
-  color: #fff;
-  text-transform: uppercase;
-  a,
-  a:hover {
+.btn {
+  &.btn-blue {
+    background-color: $blue-button-color;
     color: #fff;
+    text-transform: uppercase;
+    a,
+    a:hover {
+      color: #fff;
+    }
+  }
+
+  &.btn-transparent {
+    font-size: 14px;
+    border: 1px solid #000;
+    a,
+    a:hover {
+      color: #000;
+    }
   }
 
   &:disabled {
     background-color: lightgray;
+    pointer-events: none;
   }
 }
 

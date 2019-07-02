@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReportingContainerComponent } from './reporting-container/reporting-container.component';
 import { ReportingRoutingModule } from './reporting-routing.module';
 import { SharedModule } from '../shared';
@@ -15,6 +14,6 @@ import {
     ComboChartComponent,
     ComboSeriesVerticalComponent
   ],
-  imports: [CommonModule, ReportingRoutingModule, SharedModule, NgxChartsModule]
+  imports: [SharedModule, ReportingRoutingModule, NgxChartsModule]
 })
 export class ReportingModule {}

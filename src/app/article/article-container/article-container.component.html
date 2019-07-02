@@ -1,7 +1,7 @@
 <div *ngIf="articles">
   <div class="page-header">
     <h2>Artikel review</h2>
-    <h6>Gepubliceerde artikelen voor deze week ({{articles[currentIndex]?.week}}-{{articles[currentIndex]?.year}})</h6>
+    <h6>Gepubliceerde artikelen voor deze week ({{articleDetails?.week}}-{{articleDetails?.year}})</h6>
   </div>
   <div class="text-center btn-block">
     <button class="btn btn-blue" mat-raised-button (click)="rejectArticle(articles[currentIndex]?.id)">
@@ -21,7 +21,7 @@
 
     <section ngx-hm-carousel-container class="carousel__content">
       <article class="carousel__content--item cursor-pointer" ngx-hm-carousel-item *ngFor="let article of articles">
-        <bb-article-preview *ngIf="articlesDetails && signatureTypes" class="d-block col-7" [articleDetails]="getCurrentArticleDetails(article?.id)" [selectSign]="currentSignType(article?.id)"></bb-article-preview>
+        <bb-article-preview *ngIf="articleDetails && signatureTypes" class="d-block col-7" [articleDetails]="article" [selectSign]=" getSignatureTypes(article?.signature.id)"></bb-article-preview>
       </article>
       <ng-template #infiniteContainer></ng-template>
     </section>
@@ -29,19 +29,19 @@
     <!--only using in infinite mode or autoplay mode, that will render with-->
     <ng-template #carouselContent let-article let-i="index">
       <article class="item cursor-pointer">
-        <bb-article-preview *ngIf="articlesDetails && signatureTypes" class="d-block col-7" [articleDetails]="getCurrentArticleDetails(article?.id)" [selectSign]="currentSignType(article?.id)"></bb-article-preview>
+        <bb-article-preview *ngIf="articleDetails && signatureTypes" class="d-block col-7" [articleDetails]="article" [selectSign]=" getSignatureTypes(article?.signature.id)"></bb-article-preview>
       </article>
     </ng-template>
 
-    <ng-template #carouselPrev>
-      <div class="click-area p-3">
-        <button mat-fab>
+    <ng-template #carouselPrev *ngIf="this.articles.length > 1">
+      <div class="click-area left p-3">
+        <button mat-fab (click)="getArticleDetails(articleId)">
           <i class="material-icons">keyboard_arrow_left</i>
         </button>
       </div>
     </ng-template>
-    <ng-template #carouselNext>
-      <div class="click-area p-3">
+    <ng-template #carouselNext *ngIf="this.articles.length > 1">
+      <div class="click-area right p-3">
         <button mat-fab>
           <i class="material-icons">keyboard_arrow_right</i>
         </button>
@@ -52,19 +52,4 @@
       <div class="progress"></div>
     </ng-template>
   </ngx-hm-carousel>
-
-  <div class="article-info text-center m-auto">
-    <p>Gemaakt door: {{articles[currentIndex]?.name}}</p>
-    <p>Gemaakt op: {{articles[currentIndex]?.editDate}}</p>
-    <p>Status: {{articles[currentIndex]?.status}}</p>
-    <p class="row justify-content-center">
-      <span>Gemaakt door:</span>
-      <i *ngIf="articles[currentIndex]?.ready" class="material-icons" style="color: green">
-        check_circle
-      </i>
-      <i *ngIf="!articles[currentIndex]?.ready" class="material-icons" style="color: red">
-        remove_circle
-      </i>
-    </p>
-  </div>
 </div>

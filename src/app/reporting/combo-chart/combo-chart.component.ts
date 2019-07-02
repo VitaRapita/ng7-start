@@ -309,7 +309,7 @@ export class ComboChartComponent extends BaseChartComponent {
       name: this.yAxisLabel,
       series: this.results
     });
-    return this.combinedSeries.map(d => d.name);
+    return this.combinedSeries.map((d: any) => d.name);
   }
 
   isDate(value: any): boolean {
@@ -358,7 +358,7 @@ export class ComboChartComponent extends BaseChartComponent {
       const max = Math.max(...values);
       domain = [min, max];
     } else if (this.scaleType === 'linear') {
-      values = values.map(v => Number(v));
+      values = values.map((v: any) => Number(v));
       const min = Math.min(...values);
       const max = Math.max(...values);
       domain = [min, max];
@@ -456,11 +456,11 @@ export class ComboChartComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d: any) => d.name);
   }
 
   getYDomain() {
-    const values = this.results.map(d => d.value);
+    const values = this.results.map((d: any) => d.value);
     const min = Math.min(0, ...values);
     const max = Math.max(...values);
     if (this.yLeftAxisScaleFactor) {
@@ -501,12 +501,13 @@ export class ComboChartComponent extends BaseChartComponent {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
-      title: undefined,
+      // title: undefined,
+      title: '',
       position: this.legendPosition
     };
     if (opts.scaleType === 'ordinal') {
       opts.domain = this.seriesDomain;
-      opts.colors = this.colorsLine;
+      opts.colors = this.colorsLine || '';
       opts.title = this.legendTitle;
     } else {
       opts.domain = this.seriesDomain;

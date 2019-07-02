@@ -3,6 +3,11 @@ import { Routes, RouterModule, NoPreloading } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'overview',
     loadChildren: './overview/overview.module#OverviewModule'
   },
@@ -35,13 +40,8 @@ const routes: Routes = [
     loadChildren: './user-settings/user-settings.module#UserSettingsModule'
   },
   {
-    path: 'article-review',
+    path: 'article-review/:articleId',
     loadChildren: './article/article.module#ArticleModule'
-  },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
   }
 ];
 

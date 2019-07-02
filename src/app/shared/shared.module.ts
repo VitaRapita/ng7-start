@@ -13,6 +13,7 @@ import { ArticlePreviewComponent } from './components/article-preview/article-pr
 import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CropperDialogComponent } from './dialogs/cropper-dialog/cropper-dialog.component';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { CropperDialogComponent } from './dialogs/cropper-dialog/cropper-dialog.
     ...fromDialogs.components,
     ArticlePreviewComponent,
     ImageCropperComponent,
-    CropperDialogComponent
+    CropperDialogComponent,
+    ConfirmationDialogComponent
   ],
   entryComponents: [...fromDialogs.components],
   providers: [],

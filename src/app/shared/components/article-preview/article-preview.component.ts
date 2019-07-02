@@ -1,8 +1,8 @@
 import {
   Component,
   OnInit,
-  Input,
-  ChangeDetectionStrategy
+  Input
+  // ChangeDetectionStrategy
 } from '@angular/core';
 import IArticleDetails from '../../../interfaces/articleDetails.interface';
 

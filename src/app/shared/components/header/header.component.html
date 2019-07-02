@@ -69,7 +69,7 @@
   <div class="nav navbar-nav ml-auto">
     <div class="user-menu">
       <p>Winkel ID: 0000</p>
-      <span>REYMOND</span>
+      <span>{{currentUser['first_name']}} {{currentUser['last_name']}} {{currentUser['email']}}</span>
       <button mat-icon-button [mat-menu-trigger-for]="menu">
         <mat-icon>arrow_drop_down</mat-icon>
       </button>

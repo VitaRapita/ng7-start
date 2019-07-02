@@ -3,102 +3,202 @@
   <div class="article-constructor__block">
     <h4 class="m-3">Artikel aanmaken</h4>
     <section class="bg-wrapper p-3 mx-3">
-      <div class="article-constructor__block--edit py-3">
-        <p class="article-constructor__block--edit title">Selecter een Grid Type</p>
-        <div class="article-constructor__block--edit text-center">
-          <img src="assets/img/no-image.png" class="m-3 article-constructor__block--image type active">
-          <img src="assets/img/no-image.png" class="m-3 article-constructor__block--image type">
+      <form class="article-form" [formGroup]="articleForm">
+        <div class="article-constructor__block--edit py-3">
+          <p class="block-title">Selecter een Grid Type</p>
+          <div class="text-center">
+            <input
+              type="radio"
+              formControlName="grid"
+              id="grid1"
+              class="input-hidden"
+              value="grid1"/>
+            <label for="grid1">
+              <img
+                src="assets/img/grid1.png"
+                alt="Grid 1" />
+            </label>
+
+            <input
+              type="radio"
+              formControlName="grid"
+              id="grid2"
+              value="grid2"
+              class="input-hidden"/>
+            <label for="grid2">
+              <img
+                src="assets/img/grid2.png"
+                alt="Grid 2" />
+            </label>
+            <!--<img src="assets/img/no-image.png" class="m-3 article-constructor__block--image type active">
+            <img src="assets/img/no-image.png" class="m-3 article-constructor__block--image type">-->
+          </div>
         </div>
-      </div>
-      <div class="article-constructor__block--edit py-3">
-        <p class="title">Afbeelding</p>
-        <img class="article-constructor__block--image logo" *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
-        <div class="article-constructor__block--buttons py-3">
-          <button class="btn btn-blue" mat-raised-button (click)="openCropDialog()">
-            <i class="material-icons">image</i>
-            Toevoegen
-          </button>
+        <div class="article-constructor__block--edit py-3">
+          <p class="block-title">Afbeelding</p>
+          <img class="article-constructor__block--image logo" *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
+          <img class="article-constructor__block--image logo" *ngIf="!articleDetails?.logo" src="assets/img/ahold-logo.png">
+          <div class="article-constructor__block--buttons py-3">
+            <button class="btn btn-blue" mat-raised-button (click)="openCropDialog()">
+              <i class="material-icons">image</i>
+              Toevoegen
+            </button>
+            <button class="btn btn-blue"  mat-raised-button>
+              <i class="material-icons">crop</i>
+              Uitsnijden
+            </button>
+            <button class="btn btn-blue"  mat-raised-button (click)="resetImage()" [disabled]="!articleDetails?.logo">
+              <i class="material-icons">replay</i>
+              Reset
+            </button>
+            <button class="btn btn-blue"  mat-raised-button>
+              <i class="material-icons">close</i>
+              Verwijderen
+            </button>
+          </div>
+        </div>
+        <div class="article-constructor__block--edit py-3">
+          <p class="block-title">Artikel informatie</p>
+          <div class="article-form">
+            <mat-form-field class="form-group full-width">
+              <input matInput
+                     #articleText
+                     placeholder="Artikel tekst"
+                     type="text"
+                     maxlength="450"
+                     formControlName="articleText"/>
+              <mat-hint align="end">{{articleText.value.length}} / 450</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="form-group full-width">
+              <input matInput
+                     type="text"
+                     #ctaText
+                     placeholder="CTA Text"
+                     maxlength="50"
+                     formControlName="ctaText"/>
+              <mat-hint align="end">{{ctaText.value.length}} / 50</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="form-group full-width">
+              <input matInput
+                     type="text"
+                     placeholder="CTA Link"
+                     formControlName="ctaLink"/>
+              <mat-hint align="end">
+                <i class="material-icons">link</i>
+                TEST
+              </mat-hint>
+            </mat-form-field>
+
+            <mat-radio-group formControlName="addLink">
+              <mat-radio-button class="px-3" value="false">Geen link</mat-radio-button>
+              <mat-radio-button class="px-3" value="true">Link</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field class="form-group full-width">
+              <mat-select placeholder="Groeten" formControlName="regardsId" (ngModelChange)="getSignTypeOptions(articleForm.get('regardsId').value)">
+                <mat-option *ngFor="let sign of signatureTypes" [value]="sign.id">{{sign.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-checkbox formControlName="addEmail">
+              <i class="material-icons">mail_outline</i>
+              E-mail toevoegen aan onderschrift
+            </mat-checkbox>
+          </div>
+        </div>
+        <div class="article-constructor__block--buttons my-3">
           <button class="btn btn-blue"  mat-raised-button>
-            <i class="material-icons">crop</i>
-            Uitsnijden
+            Spellingschecker
           </button>
-          <button class="btn btn-blue"  mat-raised-button (click)="resetImage()" [disabled]="!articleDetails?.logo">
-            <i class="material-icons">replay</i>
-            Reset
-          </button>
-          <button class="btn btn-blue"  mat-raised-button>
-            <i class="material-icons">close</i>
-            Verwijderen
+          <button class="btn btn-blue"  mat-raised-button disabled>
+            Opslaan
           </button>
         </div>
-      </div>
-      <div class="article-constructor__block--edit py-3">
-        <span class="block-title">Artikel informatie</span>
-        <form class="article-form" [formGroup]="articleForm">
-          <mat-form-field class="form-group full-width">
-            <input matInput
-                   #articleText
-                   placeholder="Artikel tekst"
-                   type="text"
-                   maxlength="450"
-                   formControlName="articleText"/>
-            <mat-hint align="end">{{articleText.value.length}} / 450</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="form-group full-width">
-            <input matInput
-                   type="text"
-                   #ctaText
-                   placeholder="CTA Text"
-                   maxlength="50"
-                   formControlName="ctaText"/>
-            <mat-hint align="end">{{ctaText.value.length}} / 50</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="form-group full-width">
-            <input matInput
-                   type="text"
-                   placeholder="CTA Link"
-                   formControlName="ctaLink"/>
-            <mat-hint align="end">
-              <i class="material-icons">link</i>
-              TEST
-            </mat-hint>
-          </mat-form-field>
-
-          <mat-radio-group formControlName="addLink">
-            <mat-radio-button class="px-3" value="false">Geen link</mat-radio-button>
-            <mat-radio-button class="px-3" value="true">Link</mat-radio-button>
-          </mat-radio-group>
-
-          <mat-form-field class="form-group full-width">
-            <mat-select placeholder="Groeten" formControlName="regardsId" (ngModelChange)="getSignTypeOptions(articleForm.get('regardsId').value)">
-              <mat-option *ngFor="let sign of signatureTypes" [value]="sign.id">{{sign.signatureType}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-checkbox formControlName="addEmail">
-            <i class="material-icons">mail_outline</i>
-            E-mail toevoegen aan onderschrift
-          </mat-checkbox>
-        </form>
-      </div>
-      <div class="article-constructor__block--buttons my-3">
-        <button class="btn btn-blue"  mat-raised-button>
-          Spellingschecker
-        </button>
-        <button class="btn btn-blue"  mat-raised-button disabled>
-          Opslaan
-        </button>
-      </div>
+      </form>
     </section>
   </div>
 
   <div class="article-constructor__block--preview">
     <h4 class="m-3">Preview</h4>
-    <bb-article-preview [articleDetails]="articleDetails" [articleForm]="articleForm.value" [selectSign]="selectSign"></bb-article-preview>
-    <div class="text-center btn-block m-3">
-      <button class="btn btn-blue" mat-raised-button [disabled]="!articleForm.valid">
+    <div class="bg-wrapper preview-article mx-3 py-3">
+      <!--<div class="preview-article__static m-3">
+        <p class="w-100">{{articleDetails?.storeText}}</p>
+        <div class="store-name row">
+          <img class="preview-article__image logo" src="assets/img/ah-bonus.jpg">
+          <div class="p-3">
+            <h5>{{articleDetails?.supermarketName}}</h5>
+            <h5>{{articleDetails?.storeName}}</h5>
+          </div>
+        </div>
+        <img src="assets/img/example-img.jpeg" class="preview-article__image w-100 my-3">
+      </div>-->
+      <div class="preview-article__custom">
+        <div class="preview-article__custom--header row mx-3 px-5">
+          <div class="p-3">
+            <img src="assets/img/ahold-logo.png" style="height: 50px;">
+          </div>
+          <div>
+            <p class="client-name">Voor &lt;&lt;naam klant&gt;&gt; </p>
+            <span>de Mare Alkmaar</span>
+          </div>
+        </div>
+
+        <img class="preview-article__image w-100" src="assets/img/example-img.jpeg">
+
+        <div class="preview-article__custom--text m-3 row">
+          <img *ngIf="articleDetails?.logo" class="m-3 preview-article__image logo" [src]="articleDetails?.logo">
+          <img *ngIf="!articleDetails?.logo" class="m-3 preview-article__image logo" src="assets/img/ahold-logo.png">
+          <div class="article-text p-3">
+            <p>Beste << naam klant >> </p>
+            <span id="truncation-text" *ngIf="articleForm.value['articleText']">{{articleForm.value['articleText']}}</span>
+            <span *ngIf="!articleForm.value['articleText']">
+              De Artikel tekst komt in dit vlak te staan. <br>
+              Je kan verschillende paragrafen toevoegen met een maximum van 450 karakters.
+            </span>
+            <button class="btn btn-transparent m-3" mat-stroked-button [disabled]="!articleDetails?.id">
+              <a [routerLink]="'/article-review/' + articleDetails?.id">Less verder ></a>
+            </button>
+          </div>
+            <!--<div class="p-3 signature" *ngIf="selectSign?.id !== 8">
+              <span>Met vriendelijke groet, </span> <br/>
+              <span *ngIf="selectSign?.nameSupermarketManager" class="bold">&#123; Name supermarket manager &#125;,</span>
+              <span *ngIf="selectSign?.nameAssistantManager" class="bold">&#123; Name assistent manager &#125;,</span>
+              <span *ngIf="selectSign?.entrepreneur" class="bold">Ondernemer, </span>
+              <span *ngIf="selectSign?.cityAsTitle" class="bold">&#123; City &#125;, </span>
+              <span *ngIf="selectSign?.title" class="bold">&#123;Title&#125;, </span> <br/>
+              <span>Albert Heijn</span>
+              <span *ngIf="selectSign?.street">&#123;street&#125;</span>
+              <span *ngIf="selectSign?.houseNumber">&#123;housenumber&#125;,</span>
+              <span *ngIf="selectSign?.city">&#123;City&#125;</span> <br/>
+              <span *ngIf="selectSign?.phone">&#123;telephone number store&#125;</span> |
+              <span *ngIf="selectSign?.email">&#123;e-mail store&#125;</span>
+            </div>
+            <div class="p-3 signature" *ngIf="selectSign?.id === 8">
+              <span>Met vriendelijke groet, </span> <br/>
+              <span>&#123;Write​ ​your​ ​own​ ​signature&#125;</span>
+            </div>-->
+          <!--<div *ngIf="articleForm">
+            <div class="text-center btn-block" *ngIf="articleForm?.ctaText && articleForm?.ctaLink">
+              <button class="btn btn-blue" mat-raised-button>
+                <a [href]="articleForm?.ctaLink">{{articleForm?.ctaText}}</a>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="!articleForm">
+            <div class="text-center btn-block" *ngIf="articleDetails?.ctaText && articleDetails?.ctaLink">
+              <button class="btn btn-blue" mat-raised-button>
+                <a [href]="articleDetails?.ctaLink">{{articleDetails?.ctaText}}</a>
+              </button>
+            </div>
+          </div>
+        </div>-->
+        </div>
+      </div>
+    </div>
+    <div class="text-center btn-block my-3">
+      <button class="btn btn-blue" mat-raised-button [disabled]="!articleForm.valid" (click)="onSubmit()">
         Klaar voor publicatiexs
       </button>
     </div>
@@ -111,4 +211,3 @@
     </div>
   </div>
 </div>
-

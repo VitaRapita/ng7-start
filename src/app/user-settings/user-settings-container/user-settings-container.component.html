@@ -108,19 +108,27 @@
         </mat-form-field>
 
         <mat-form-field class="form-group full-width">
-          <mat-label for="storeASMId">ASM Winkel</mat-label>
+          <input matInput
+                 type="text"
+                 placeholder="ASM Winkel"
+                 formControlName="storeASM"/>
+          <!--<mat-label for="storeASMId">ASM Winkel</mat-label>
           <mat-select id="storeASMId" formControlName="storeASM">
             <mat-option value="store 1">store 1</mat-option>
             <mat-option value="store 2">store 2</mat-option>
-          </mat-select>
+          </mat-select>-->
         </mat-form-field>
 
         <mat-form-field class="form-group full-width">
-          <mat-label for="storeId">Winkel*</mat-label>
+          <input matInput
+                 type="text"
+                 placeholder="Winkel*"
+                 formControlName="storeId"/>
+          <!--<mat-label for="storeId">Winkel*</mat-label>
           <mat-select id="storeId" formControlName="storeId">
             <mat-option value="0001">0001</mat-option>
             <mat-option value="store 2">store 2</mat-option>
-          </mat-select>
+          </mat-select>-->
         </mat-form-field>
       </div>
     </div>

@@ -19,3 +19,15 @@ $transition_time: 0.2s;
 bb-article-preview {
   margin: 0 auto;
 }
+
+.click-area {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  &.left {
+    left: 0;
+  }
+  &.right {
+    right: 0;
+  }
+}

@@ -26,11 +26,14 @@ export class ArchiveContainerComponent implements OnInit, OnDestroy {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+  pageSize = 5;
+  currentPage = 0;
+  totalSize = 0;
 
   constructor(private overviewService: OverviewService) {}
 
   ngOnInit() {
-    this.getArticles();
+    this.getArticles(this.pageSize, this.currentPage + 1);
   }
 
   filterByWeek(filterValue: string) {
@@ -56,11 +59,15 @@ export class ArchiveContainerComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
-  getArticles() {
-    this.overviewService.getArticles().subscribe((data: [IArticle]) => {
-      this.articles = data;
+  getArticles(count: number, page: number) {
+    this.overviewService.getArticles(count, page).subscribe((data: any) => {
+      this.articles = data.results;
       this.setTableData();
     });
+  }
+
+  changePage(event: any) {
+    this.getArticles(event.pageSize, event.pageIndex + 1);
   }
 
   ngOnDestroy() {}

@@ -4,28 +4,32 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpResponse,
-  HttpRequest,
-  HttpErrorResponse
+  HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AuthenticationService } from '../../authentication/services/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  logStyle = 'color: red; font-size: 1rem;';
-
-  constructor() {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private snackBar: MatSnackBar
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // add a custom header
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer token`
-      }
-    });
+    if (this.authenticationService.getToken()) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Token ${this.authenticationService.getToken()}`
+        }
+      });
+    }
 
     return next.handle(request).pipe(
       tap(
@@ -46,8 +50,14 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   onError(error: any) {
-    if (error instanceof HttpErrorResponse) {
-      console.log('%cHttp error message: ' + error.message, this.logStyle);
+    if (error.status === 401) {
+      this.authenticationService.logOut();
     }
+
+    this.snackBar.open(error.message, 'Close', {
+      duration: 3000,
+      panelClass: 'error-notification-overlay',
+      verticalPosition: 'bottom'
+    });
   }
 }
