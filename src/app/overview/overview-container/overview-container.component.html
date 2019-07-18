@@ -112,7 +112,7 @@
       <mat-paginator
         [pageIndex]="currentPage"
         [pageSize]="pageSize"
-        [length]="totalSize"
+        [length]="articlesCount"
         [pageSizeOptions]="[5, 10, 25, 100]"
         (page)="changePage($event)"
       ></mat-paginator>

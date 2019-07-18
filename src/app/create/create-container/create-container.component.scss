@@ -8,7 +8,7 @@
     max-width: 40%;
 
     &--preview {
-      width: 68rem;
+      width: 76rem;
 
       .tips {
         justify-content: flex-end;
@@ -36,6 +36,10 @@
       input[type='radio']:checked + label > img {
         border: 1px solid #fff;
         box-shadow: 0 0 3px 2px $blue-button-color;
+      }
+
+      textarea {
+        overflow: hidden;
       }
 
       /* Stuff after this is only to make things more pretty */
@@ -76,6 +80,7 @@
 }
 
 .preview-article {
+  padding: 20px;
   &__image {
     height: 25rem;
     border: 1px solid lightgray;
@@ -98,6 +103,9 @@
   }
 
   &__custom {
+    .email-preview {
+      margin-bottom: 30px;
+    }
     &--header {
       align-items: center;
       font-weight: 700;
@@ -106,9 +114,61 @@
         font-size: 1.6rem;
         margin-bottom: 0;
       }
+
+      .logo {
+        height: 50px;
+      }
+    }
+
+    &--landingpage-header {
+      background-color: $blue-button-color;
+      height: 200px;
+      text-align: center;
+      .logo {
+        height: 50px;
+        margin-top: 35px;
+      }
+    }
+
+    &--team-photo {
+      margin-top: -80px;
+      height: 230px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     &--text {
+      .text-box {
+        font-weight: 300;
+        line-height: 2rem;
+
+        p {
+          font-size: 1.8rem;
+          font-weight: 700;
+        }
+      }
+
+      &.grid1 {
+        .image-box {
+          margin-right: 10px;
+          float: left;
+        }
+      }
+
+      &.grid2 {
+        .image-box {
+          img {
+            width: 20rem;
+            height: 20rem;
+          }
+        }
+      }
+    }
+
+    &--short-text {
       height: 15rem;
       align-items: center;
 

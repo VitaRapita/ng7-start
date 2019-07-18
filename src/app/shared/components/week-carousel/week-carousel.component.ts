@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'bb-week-carousel',
@@ -8,13 +8,25 @@ import { Component, OnInit } from '@angular/core';
 export class WeekCarouselComponent implements OnInit {
   currentIndex = 0;
   infinite = true;
-  weeks = Array.from({ length: 5 }, (_, k) => k + 1);
+  weeks = Array.from({ length: 52 }, (_, k) => k + 1);
+  @Input()
+  currentWeek!: number;
+  @Output()
+  chosenWeek = new EventEmitter();
 
   constructor() {}
 
   click(i: number) {
     this.currentIndex = i - 1;
+    this.changeСhosenWeek();
   }
 
-  ngOnInit() {}
+  changeСhosenWeek() {
+    this.currentWeek = this.currentIndex + 1;
+    this.chosenWeek.emit(this.currentWeek);
+  }
+
+  ngOnInit() {
+    this.currentIndex = this.currentWeek - 1;
+  }
 }

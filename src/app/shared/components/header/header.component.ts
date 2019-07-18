@@ -8,12 +8,12 @@ import IUserSettings from '../../../interfaces/user-settings.interface';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: IUserSettings;
+  currentUser?: IUserSettings;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = JSON.parse(localStorage.user);
   }
 
   logOut() {

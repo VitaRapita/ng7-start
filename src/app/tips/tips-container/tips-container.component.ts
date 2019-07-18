@@ -13,9 +13,12 @@ export class TipsContainerComponent implements OnInit, OnDestroy {
   htmlText = '';
   titleImage = '';
   sliderColor = 'primary';
+  currentWeek?: number;
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentWeek = 29;
+  }
 
   openCropDialog() {
     const dialogRef = this.dialog.open(CropperDialogComponent);
@@ -23,6 +26,10 @@ export class TipsContainerComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.titleImage = result;
     });
+  }
+
+  changeWeek($event: any) {
+    console.log('event', $event);
   }
 
   ngOnDestroy() {}

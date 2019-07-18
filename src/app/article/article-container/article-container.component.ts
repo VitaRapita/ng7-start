@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
 import ISignatureType from '../../interfaces/signatureType.interface';
-import IArticleDetails from '../../interfaces/articleDetails.interface';
 import IArticle from '../../interfaces/article.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { ActivatedRoute } from '@angular/router';
@@ -50,10 +49,10 @@ import {
   styleUrls: ['./article-container.component.scss']
 })
 export class ArticleContainerComponent implements OnInit, OnDestroy {
-  articleDetails: IArticle;
+  articleDetails!: IArticle;
   signatureTypes: ISignatureType[] = [];
   articles: IArticle[] = [];
-  articleId;
+  articleId: number;
   currentAnimationState = 'initial';
   currentIndex = 0;
 
@@ -77,7 +76,7 @@ export class ArticleContainerComponent implements OnInit, OnDestroy {
     });
   }
 
-  getSignatureTypes(id) {
+  getSignatureTypes(id: number) {
     return SIGNATURE_TYPES.find(obj => obj.id === id);
   }
 
@@ -92,7 +91,7 @@ export class ArticleContainerComponent implements OnInit, OnDestroy {
     alert(`Article ${id} rejected!`);
   }
 
-  getCurrentArticleId(action) {
+  getCurrentArticleId(action: string) {
     const index = this.articles.findIndex(
       x => x.id === this.articleDetails['id']
     );

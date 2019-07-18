@@ -14,5 +14,11 @@ export class CropperDialogComponent implements OnInit {
 
   changeImage(event: any) {
     this.image = event;
+    // fetch(event)
+    //   .then(res => res.blob())
+    //   .then(blob => {
+    //     this.image = new File([blob], "File name");
+    //     console.log(this.image);
+    //   });
   }
 }

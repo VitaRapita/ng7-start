@@ -41,4 +41,5 @@ export default interface IArticle {
 
 export default interface IApiArticleResults {
   results: IArticle[];
+  count: number;
 }

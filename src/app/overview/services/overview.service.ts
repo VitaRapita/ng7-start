@@ -22,11 +22,11 @@ export class OverviewService {
     );
   }
 
-  public deleteArticle(id): Observable<IArticle[]> {
+  public deleteArticle(id: number): Observable<IArticle[]> {
     return this.http.delete<IArticle[]>(`${API_URL}articles/${id}`);
   }
 
-  public declineArticle(id): Observable<IArticle[]> {
+  public declineArticle(id: number): Observable<IArticle[]> {
     return this.http.post<IArticle[]>(`${API_URL}articles/${id}/decline`, {});
   }
 }

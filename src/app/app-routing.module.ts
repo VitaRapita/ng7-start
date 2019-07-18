@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, NoPreloading } from '@angular/router';
+import { AppCanActivateGuard } from './app-can-activate.guard';
 
 const routes: Routes = [
   {
@@ -25,15 +26,18 @@ const routes: Routes = [
   },
   {
     path: 'reporting',
-    loadChildren: './reporting/reporting.module#ReportingModule'
+    loadChildren: './reporting/reporting.module#ReportingModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule'
+    loadChildren: './admin/admin.module#AdminModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'tips',
-    loadChildren: './tips/tips.module#TipsModule'
+    loadChildren: './tips/tips.module#TipsModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'user-settings',

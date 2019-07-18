@@ -12,15 +12,15 @@ const API_URL = environment.baseUrl;
 export class UserSettingsService {
   constructor(private http: HttpClient) {}
 
-  public getUserSettings(id): Observable<IUserSettings> {
-    return this.http.get<IUserSettings>(`${API_URL}users/${id}`);
+  public getUserSettings(id: number): Observable<IUserSettings> {
+    return this.http.get<IUserSettings>(`${API_URL}users/${id}/`);
   }
 
   public updateUserSettings(
     userSettings: IUserSettings
   ): Observable<IUserSettings> {
     return this.http.put<IUserSettings>(
-      `${API_URL}users/${userSettings.id}`,
+      `${API_URL}users/${userSettings.id}/`,
       userSettings
     );
   }

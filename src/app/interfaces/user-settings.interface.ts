@@ -12,8 +12,8 @@ export default interface IUserSettings {
   store: {
     title: string;
     companyId: number;
-    storeId: number;
+    id: number;
   };
-  profileImg: string;
+  avatar: string;
   teamPhoto: string;
 }

@@ -3,6 +3,7 @@ import { AdminService } from '../services/admin.service';
 import IUserSettings from '../../interfaces/user-settings.interface';
 import IStore from '../../interfaces/store.interface';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @AutoUnsubscribe()
 @Component({
@@ -16,7 +17,10 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   users: IUserSettings[] = [];
   stores: IStore[] = [];
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.getUsers();
@@ -39,8 +43,36 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateStore(item: IStore) {
+    this.adminService.updateStore(item).subscribe(() => {
+      this.openSnackBar('Store updated');
+      this.getStores();
+    });
+  }
+
   changeSliderParent($event: any) {
     console.log('event', $event);
+  }
+
+  editStore($event: any) {
+    const item = $event;
+    // if editable, save the user and update it with the results
+    if (item.editable) {
+      this.updateStore(item);
+      item.editable = false;
+    }
+    // if not editable, make it editable
+    else {
+      item.editable = true;
+    }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: 'error-notification-overlay',
+      verticalPosition: 'bottom'
+    });
   }
 
   ngOnDestroy() {}

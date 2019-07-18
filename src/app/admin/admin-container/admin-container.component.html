@@ -6,7 +6,7 @@
   </mat-tab>
   <mat-tab label="Winkels">
     <ng-container *ngIf = "isStoresLoaded">
-      <bb-admin-stores-table [stores]="stores"></bb-admin-stores-table>
+      <bb-admin-stores-table [stores]="stores" (editStore)="editStore($event)"></bb-admin-stores-table>
     </ng-container>
   </mat-tab>
 </mat-tab-group>

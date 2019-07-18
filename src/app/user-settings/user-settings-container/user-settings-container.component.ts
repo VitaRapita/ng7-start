@@ -31,27 +31,29 @@ export class UserSettingsContainerComponent implements OnInit, OnDestroy {
     this.userForm = this.fb.group({
       id: 0,
       email: [
-        { value: '', disabled: true },
+        { value: '', disabled: this.userId },
         [Validators.required, Validators.email]
       ],
       phone: ['', [Validators.required, Validators.minLength(8)]],
       name: [
-        { value: '', disabled: true },
+        { value: '', disabled: this.userId },
         [Validators.required, Validators.minLength(3)]
       ],
-      role: [{ value: '', disabled: true }],
+      first_name: '',
+      last_name: '',
+      role: [{ value: '', disabled: this.userId }],
       assistant: '',
       storeASM: '',
-      storeId: ['', [Validators.required]],
-      profileImage: '',
-      teamPhoto: ''
+      store_id: ['', [Validators.required]],
+      avatar: '',
+      team_photo: ''
     });
   }
 
   ngOnInit() {
     this.userId
       ? this.getUserSettings()
-      : (this.user = JSON.parse(localStorage.getItem('user')));
+      : (this.user = JSON.parse(localStorage.user));
     const phoneControl = this.userForm.get('phone');
     if (phoneControl) {
       this.userForm.valueChanges
@@ -70,7 +72,7 @@ export class UserSettingsContainerComponent implements OnInit, OnDestroy {
 
   updateUserSettings() {
     this.userSettingsService
-      .updateUserSettings(this.userForm.value)
+      .updateUserSettings(this.userForm.getRawValue())
       .subscribe((data: IUserSettings) => {
         this.updateForm(data);
       });
@@ -90,11 +92,13 @@ export class UserSettingsContainerComponent implements OnInit, OnDestroy {
       email: user.email,
       phone: user.phone,
       name: user.name,
+      first_name: 'first name',
+      last_name: 'last name',
       role: user.role,
       storeASM: user.store['title'],
-      storeId: user.store['id'],
-      profileImage: user.profileImg,
-      teamPhoto: user.teamPhoto
+      store_id: user.store['id'],
+      avatar: user.avatar,
+      team_photo: user.teamPhoto
     });
   }
 
@@ -104,10 +108,16 @@ export class UserSettingsContainerComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       switch (imageType) {
         case 'profile':
-          this.userForm.value.profileImage = result;
+          this.userForm.patchValue({
+            avatar: result
+          });
+          // this.userForm.value.avatar = result;
           break;
         case 'team':
-          this.userForm.value.teamPhoto = result;
+          this.userForm.patchValue({
+            team_photo: result
+          });
+          // this.userForm.value.team_photo = result;
           break;
         default:
           break;

@@ -39,7 +39,7 @@ export class OverviewContainerComponent implements OnInit, OnDestroy {
   sort!: MatSort;
   pageSize = 5;
   currentPage = 0;
-  totalSize = 0;
+  articlesCount!: number;
 
   constructor(
     private overviewService: OverviewService,
@@ -70,18 +70,19 @@ export class OverviewContainerComponent implements OnInit, OnDestroy {
       .getArticles(count, page)
       .subscribe((data: IApiArticleResults) => {
         this.articles = data.results;
+        this.articlesCount = data.count;
         this.setTableData();
       });
   }
 
-  deleteArticle(id) {
-    this.overviewService.deleteArticle(id).subscribe((data: any) => {
+  deleteArticle(id: number) {
+    this.overviewService.deleteArticle(id).subscribe(() => {
       this.getArticles(this.pageSize, this.currentPage + 1);
     });
   }
 
-  declineArticle(id) {
-    this.overviewService.declineArticle(id).subscribe((data: any) => {
+  declineArticle(id: number) {
+    this.overviewService.declineArticle(id).subscribe(() => {
       this.getArticles(this.pageSize, this.currentPage + 1);
     });
   }
@@ -90,7 +91,7 @@ export class OverviewContainerComponent implements OnInit, OnDestroy {
     this.getArticles(event.pageSize, event.pageIndex + 1);
   }
 
-  openDialog(id, action): void {
+  openDialog(id: number, action: string): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '50rem',
       data: `Do you confirm the ${action} of this data?`

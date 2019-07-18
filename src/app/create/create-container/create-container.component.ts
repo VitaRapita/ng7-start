@@ -15,7 +15,6 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { SIGNATURE_TYPES } from '../../constants';
 import { ActivatedRoute } from '@angular/router';
 import IArticle from '../../interfaces/article.interface';
-import IUserSettings from '../../interfaces/user-settings.interface';
 
 @AutoUnsubscribe()
 @Component({
@@ -26,7 +25,7 @@ import IUserSettings from '../../interfaces/user-settings.interface';
 })
 export class CreateContainerComponent implements OnInit, OnDestroy {
   articleForm: FormGroup;
-  articleDetails?: IArticle;
+  articleDetails!: IArticle;
   signatureTypes: ISignatureType[] = [];
   weeks: any;
   selectSign: any;
@@ -58,7 +57,7 @@ export class CreateContainerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getSignatureTypes();
 
-    this.articleForm.valueChanges.subscribe(val => {
+    this.articleForm.valueChanges.subscribe(() => {
       this.elipssisText();
     });
   }
@@ -81,7 +80,7 @@ export class CreateContainerComponent implements OnInit, OnDestroy {
 
   updateArticle() {
     this.createService
-      .updateArticle(this.articleId, this.articleDetails)
+      .updateArticle(this.articleDetails)
       .subscribe((res: IArticle) => {
         this.articleDetails = res;
         this.updateForm(this.articleDetails);
@@ -112,7 +111,8 @@ export class CreateContainerComponent implements OnInit, OnDestroy {
 
   getSignatureTypes() {
     this.createService.getSignatureTypes().subscribe((data: any) => {
-      this.signatureTypes = data.results;
+      // this.signatureTypes = data.results;
+      this.signatureTypes = SIGNATURE_TYPES;
       this.selectSign = SIGNATURE_TYPES.find(
         obj => obj.id === this.articleForm.value.regardsId
       );
@@ -136,10 +136,7 @@ export class CreateContainerComponent implements OnInit, OnDestroy {
   }
 
   setLogo(logo: string = '') {
-    if (this.articleDetails) {
-      this.articleDetails.logo = logo;
-      this.cdr.detectChanges();
-    }
+    this.articleDetails['logo'] = logo;
   }
 
   elipssisText() {

@@ -1,13 +1,15 @@
-<bb-week-carousel></bb-week-carousel>
+<bb-week-carousel [currentWeek]="currentWeek" (chosenWeek)="changeWeek($event)"></bb-week-carousel>
 <section class="bg-wrapper p-3 my-3 text-center">
-  <img [src]="titleImage" alt="Please add title image">
+  <p>Themabeeld</p>
+  <img *ngIf="titleImage" [src]="titleImage">
+  <img *ngIf="!titleImage" src="assets/img/image-placeholder.png">
   <div class="row justify-content-center my-3">
     <button mat-mini-fab class="btn btn-blue mx-3" (click)="openCropDialog()">
       <i class="material-icons">
         image
       </i>
     </button>
-    <button mat-mini-fab class="btn btn-blue mx-3">
+    <button mat-mini-fab class="btn btn-blue mx-3" [disabled]="!titleImage">
       <i class="material-icons">
         crop
       </i>
@@ -17,7 +19,7 @@
         replay
       </i>
     </button>
-    <button mat-mini-fab class="btn btn-blue mx-3">
+    <button mat-mini-fab class="btn btn-blue mx-3" [disabled]="!titleImage">
       <i class="material-icons">
         close
       </i>

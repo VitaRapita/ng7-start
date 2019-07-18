@@ -1,11 +1,10 @@
 <div class="page-header"><h3>Account</h3></div>
 <section class="bg-wrapper p-3">
-  <form class="user-form" (ngSubmit)="save()" [formGroup]="userForm">
+  <form class="user-form" [formGroup]="userForm">
     <div class="row my-5">
       <div class="user-form__images-block col-4 text-center">
         <h4>Profile afbeelding</h4>
-        <img *ngIf="userForm.get('profileImage').value" [src]="userForm.get('profileImage').value">
-        <!--<bb-image-cropper *ngIf="imageChangedEvent" (changeImage)="changeProfileImage($event)" [imageChangedEvent]="imageChangedEvent"></bb-image-cropper>-->
+        <img *ngIf="userForm.get('avatar').value" [src]="userForm.get('avatar').value">
         <div class="row justify-content-center my-3">
           <button mat-mini-fab class="mx-3" (click)="openCropDialog('profile')">
             <i class="material-icons">
@@ -25,7 +24,7 @@
         </div>
 
         <h4>Teamfoto</h4>
-        <img *ngIf="userForm.get('teamPhoto').value" [src]="userForm.get('teamPhoto').value">
+        <img *ngIf="userForm.get('team_photo').value" [src]="userForm.get('team_photo').value">
         <div class="row justify-content-center my-3">
           <button mat-mini-fab class="mx-3" (click)="openCropDialog('team')">
             <i class="material-icons">
@@ -52,6 +51,12 @@
                  type="email"
                  formControlName="email"/>
         </mat-form-field>
+        <span class="invalid-massage" *ngIf="userForm.get('email').errors?.required && userForm.get('email').dirty">
+          Please enter your email.
+        </span>
+        <span class="invalid-massage" *ngIf="!userForm.get('email').errors?.valid && userForm.get('email').dirty">
+           The email is not valid.
+        </span>
 
         <mat-form-field class="form-group full-width">
           <input matInput
@@ -123,8 +128,8 @@
           <input matInput
                  type="text"
                  placeholder="Winkel*"
-                 formControlName="storeId"/>
-          <!--<mat-label for="storeId">Winkel*</mat-label>
+                 formControlName="store_id"/>
+          <!--<mat-label for="store_id">Winkel*</mat-label>
           <mat-select id="storeId" formControlName="storeId">
             <mat-option value="0001">0001</mat-option>
             <mat-option value="store 2">store 2</mat-option>
@@ -134,8 +139,8 @@
     </div>
 
     <button mat-raised-button
-            type="submit"
             class="btn btn-blue"
+            (click)="save()"
             [title]="userForm.valid ? 'Save' : 'Disabled'"
             [disabled]="!userForm.valid">
       Opsalaan

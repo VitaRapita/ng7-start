@@ -25,11 +25,11 @@ export class CreateService {
     return this.http.get(`${API_URL}weeks/`);
   }
 
-  public createArticle(data): Observable<IArticle> {
-    return this.http.post<IArticle>(`${API_URL}articles/`, data);
+  public createArticle(article: IArticle): Observable<IArticle> {
+    return this.http.post<IArticle>(`${API_URL}articles/`, article);
   }
 
-  public updateArticle(id, data): Observable<IArticle> {
-    return this.http.put<IArticle>(`${API_URL}articles/${id}`, data);
+  public updateArticle(article: IArticle): Observable<IArticle> {
+    return this.http.put<IArticle>(`${API_URL}articles/${article.id}`, article);
   }
 }

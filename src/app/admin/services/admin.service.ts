@@ -19,4 +19,8 @@ export class AdminService {
   public getStores(): Observable<IStore[]> {
     return this.http.get<IStore[]>(`${API_URL}stores/`);
   }
+
+  public updateStore(store: IStore): Observable<IStore> {
+    return this.http.put<IStore>(`${API_URL}stores/${store.id}/`, store);
+  }
 }

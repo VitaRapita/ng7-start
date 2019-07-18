@@ -37,7 +37,7 @@
         <div class="article-constructor__block--edit py-3">
           <p class="block-title">Afbeelding</p>
           <img class="article-constructor__block--image logo" *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
-          <img class="article-constructor__block--image logo" *ngIf="!articleDetails?.logo" src="assets/img/ahold-logo.png">
+          <img class="article-constructor__block--image logo" *ngIf="!articleDetails?.logo" src="assets/img/no-image.png">
           <div class="article-constructor__block--buttons py-3">
             <button class="btn btn-blue" mat-raised-button (click)="openCropDialog()">
               <i class="material-icons">image</i>
@@ -61,12 +61,15 @@
           <p class="block-title">Artikel informatie</p>
           <div class="article-form">
             <mat-form-field class="form-group full-width">
-              <input matInput
-                     #articleText
-                     placeholder="Artikel tekst"
-                     type="text"
-                     maxlength="450"
-                     formControlName="articleText"/>
+              <textarea matInput
+                    #articleText
+                    placeholder="Artikel tekst"
+                    type="text"
+                    maxlength="450"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    formControlName="articleText">
+              </textarea>
               <mat-hint align="end">{{articleText.value.length}} / 450</mat-hint>
             </mat-form-field>
 
@@ -98,7 +101,7 @@
 
             <mat-form-field class="form-group full-width">
               <mat-select placeholder="Groeten" formControlName="regardsId" (ngModelChange)="getSignTypeOptions(articleForm.get('regardsId').value)">
-                <mat-option *ngFor="let sign of signatureTypes" [value]="sign.id">{{sign.title}}</mat-option>
+                <mat-option *ngFor="let sign of signatureTypes" [value]="sign.id">{{sign.signatureType}}</mat-option>
               </mat-select>
             </mat-form-field>
 
@@ -112,7 +115,7 @@
           <button class="btn btn-blue"  mat-raised-button>
             Spellingschecker
           </button>
-          <button class="btn btn-blue"  mat-raised-button disabled>
+          <button class="btn btn-blue"  mat-raised-button [disabled]="!articleForm.valid">
             Opslaan
           </button>
         </div>
@@ -134,10 +137,11 @@
         </div>
         <img src="assets/img/example-img.jpeg" class="preview-article__image w-100 my-3">
       </div>-->
-      <div class="preview-article__custom">
+      <div class="preview-article__custom email-preview">
+        <p class="block-title">Email preview</p>
         <div class="preview-article__custom--header row mx-3 px-5">
           <div class="p-3">
-            <img src="assets/img/ahold-logo.png" style="height: 50px;">
+            <img class="logo" src="assets/img/ahold-logo.png">
           </div>
           <div>
             <p class="client-name">Voor &lt;&lt;naam klant&gt;&gt; </p>
@@ -147,7 +151,7 @@
 
         <img class="preview-article__image w-100" src="assets/img/example-img.jpeg">
 
-        <div class="preview-article__custom--text m-3 row">
+        <div class="preview-article__custom--short-text m-3 row">
           <img *ngIf="articleDetails?.logo" class="m-3 preview-article__image logo" [src]="articleDetails?.logo">
           <img *ngIf="!articleDetails?.logo" class="m-3 preview-article__image logo" src="assets/img/ahold-logo.png">
           <div class="article-text p-3">
@@ -161,7 +165,63 @@
               <a [routerLink]="'/article-review/' + articleDetails?.id">Less verder ></a>
             </button>
           </div>
-            <!--<div class="p-3 signature" *ngIf="selectSign?.id !== 8">
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="preview-article__custom landingpage-email">
+        <p class="block-title">Landingpage preview</p>
+        <div class="preview-article__custom--landingpage-header">
+          <img class="logo" src="assets/img/ahold-logo.png">
+        </div>
+        <div class="preview-article__custom--team-photo block-width-80">
+          <img *ngIf="articleDetails?.teamPhoto" [src]="articleDetails?.teamPhoto">
+          <img *ngIf="!articleDetails?.teamPhoto" src="assets/img/image-placeholder.png">
+        </div>
+
+        <div class="block-width-80">
+          <div *ngIf="articleForm.value.grid === 'grid1'" class="preview-article__custom--text grid1 my-5">
+            <div class="image-box">
+              <img *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
+              <img class="article-constructor__block--image logo" *ngIf="!articleDetails?.logo" src="assets/img/no-image.png">
+            </div>
+            <div class="text-box">
+              <p>Beste << naam klant >> </p>
+              <span *ngIf="articleForm.value['articleText']">{{articleForm.value['articleText']}}</span>
+              <span *ngIf="!articleForm.value['articleText']">
+              De Artikel tekst komt in dit vlak te staan. <br>
+              Je kan verschillende paragrafen toevoegen met een maximum van 450 karakters.
+            </span>
+            </div>
+          </div>
+
+          <div *ngIf="articleForm.value.grid === 'grid2'" class="preview-article__custom--text grid2 row my-5 justify-content-between">
+            <div class="text-box col-7">
+              <p>Beste << naam klant >> </p>
+              <span *ngIf="articleForm.value['articleText']">{{articleForm.value['articleText']}}</span>
+              <span *ngIf="!articleForm.value['articleText']">
+              De Artikel tekst komt in dit vlak te staan. <br>
+              Je kan verschillende paragrafen toevoegen met een maximum van 450 karakters.
+            </span>
+            </div>
+            <div class="image-box col-5">
+              <img *ngIf="articleDetails?.logo" [src]="articleDetails?.logo">
+              <img class="article-constructor__block--image logo" src="assets/img/no-image.png">
+            </div>
+          </div>
+
+          <div *ngIf="articleForm">
+            <div class="text-left btn-block" *ngIf="articleForm.value['ctaText'] && articleForm.value['ctaLink']">
+              <button class="btn btn-transparent" mat-raised-button>
+                <a [href]="articleForm.value['ctaLink']">{{articleForm.value['ctaText']}}</a>
+              </button>
+            </div>
+          </div>
+
+          <div class="preview-article__custom--signature row m-0 align-items-center">
+            <img class="preview-article__image logo" src="assets/img/ahold-logo.png">
+            <div class="p-3 signature" *ngIf="selectSign?.id !== 8">
               <span>Met vriendelijke groet, </span> <br/>
               <span *ngIf="selectSign?.nameSupermarketManager" class="bold">&#123; Name supermarket manager &#125;,</span>
               <span *ngIf="selectSign?.nameAssistantManager" class="bold">&#123; Name assistent manager &#125;,</span>
@@ -178,22 +238,15 @@
             <div class="p-3 signature" *ngIf="selectSign?.id === 8">
               <span>Met vriendelijke groet, </span> <br/>
               <span>&#123;Write​ ​your​ ​own​ ​signature&#125;</span>
+            </div>
+            <!--<div *ngIf="!articleForm">
+              <div class="text-center btn-block" *ngIf="articleDetails.value['ctaText'] && articleDetails?.ctaLink">
+                <button class="btn btn-blue" mat-raised-button>
+                  <a [href]="articleDetails?.ctaLink">{{articleDetails.value['ctaText']}}</a>
+                </button>
+              </div>
             </div>-->
-          <!--<div *ngIf="articleForm">
-            <div class="text-center btn-block" *ngIf="articleForm?.ctaText && articleForm?.ctaLink">
-              <button class="btn btn-blue" mat-raised-button>
-                <a [href]="articleForm?.ctaLink">{{articleForm?.ctaText}}</a>
-              </button>
-            </div>
           </div>
-          <div *ngIf="!articleForm">
-            <div class="text-center btn-block" *ngIf="articleDetails?.ctaText && articleDetails?.ctaLink">
-              <button class="btn btn-blue" mat-raised-button>
-                <a [href]="articleDetails?.ctaLink">{{articleDetails?.ctaText}}</a>
-              </button>
-            </div>
-          </div>
-        </div>-->
         </div>
       </div>
     </div>
