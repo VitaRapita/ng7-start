@@ -1,0 +1,20 @@
+<div class="page-header"><h3>Configurations</h3></div>
+<section class="bg-wrapper p-3 configurations row">
+  <div class="configurations__buttons m-3">
+    <h3 class="my-3">Buttons color</h3>
+    <color-sketch
+      [color]="btnColor"
+      (onChangeComplete)="handleChange($event, 'button')"
+    ></color-sketch>
+    <p>Example</p>
+    <button class="btn test-btn" mat-raised-button [ngStyle]="{'background-color': btnColor.hex}">Test button</button>
+  </div>
+
+  <div class="configurations__navbar m-3">
+    <h3 class="my-3">Navigation panel color</h3>
+    <color-sketch
+      [color]="navColor"
+      (onChangeComplete)="handleChange($event, 'navbar')"
+    ></color-sketch>
+  </div>
+</section>

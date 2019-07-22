@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'article-review/:articleId',
     loadChildren: './article/article.module#ArticleModule'
+  },
+  {
+    path: 'configurations',
+    loadChildren: './configurations/configurations.module#ConfigurationsModule'
   }
 ];
 
