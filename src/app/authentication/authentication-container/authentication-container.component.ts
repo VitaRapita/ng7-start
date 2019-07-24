@@ -40,6 +40,14 @@ export class AuthenticationContainerComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   error = '';
 
+  configurations = {
+    page_backgroung: '#746c62',
+    body_backgroung: '#ffffff',
+    top_menu: '#e6ded2',
+    button_color: '#78b532',
+    languages: ['EN', 'NL']
+  };
+
   constructor(
     // private authService: AuthenticationService,
     private fb: FormBuilder,
@@ -63,6 +71,10 @@ export class AuthenticationContainerComponent implements OnInit, OnDestroy {
       (data: any) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem(
+          'configurations',
+          JSON.stringify(this.configurations)
+        );
         this.router.navigate(['/overview']);
       },
       () => {

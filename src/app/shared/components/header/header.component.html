@@ -1,9 +1,9 @@
 <header class="app-header navbar py-0">
       <span class="navbar-brand">
-        <a href="/">
+        <a href="/overview">
           <img
             class="navbar-brand-full"
-            src="../assets/img/ahold-logo.png"
+            src="../assets/img/delhaize-logo.png"
             height="60"
             alt="AholdLogo"
           />
@@ -79,11 +79,14 @@
       <a class="mat-menu-item"
          routerLinkActive="active"
          routerLink="/user-settings">
-        Settings
+        User Settings
+      </a>
+      <a class="mat-menu-item"
+         routerLinkActive="active"
+         routerLink="/configurations">
+        Configuration
       </a>
       <a  class="mat-menu-item"
-          routerLinkActive="active"
-          routerLink="/user-settings"
           (click)="logOut()"
         >Log Out</a
       >

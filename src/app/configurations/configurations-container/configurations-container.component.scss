@@ -1,7 +1,16 @@
+@import '../../../styles/variables';
+
 .configurations {
+  margin: 0 auto;
   &__buttons {
     .test-btn {
       color: #fff;
+    }
+  }
+
+  &__logo {
+    button {
+      background-color: $green-button-color;
     }
   }
 }

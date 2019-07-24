@@ -1,20 +1,54 @@
 <div class="page-header"><h3>Configurations</h3></div>
-<section class="bg-wrapper p-3 configurations row">
-  <div class="configurations__buttons m-3">
-    <h3 class="my-3">Buttons color</h3>
-    <color-sketch
-      [color]="btnColor"
-      (onChangeComplete)="handleChange($event, 'button')"
-    ></color-sketch>
-    <p>Example</p>
-    <button class="btn test-btn" mat-raised-button [ngStyle]="{'background-color': btnColor.hex}">Test button</button>
+<section [formGroup]="configForm" class="bg-wrapper p-3 configurations">
+
+  <div class="text-center">
+    <mat-form-field class="input__width--50 ">
+      <mat-label>Languages</mat-label>
+      <mat-select formControlName="languages" multiple>
+        <mat-option *ngFor="let language of languagesList" [value]="language">{{language}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
-  <div class="configurations__navbar m-3">
-    <h3 class="my-3">Navigation panel color</h3>
-    <color-sketch
-      [color]="navColor"
-      (onChangeComplete)="handleChange($event, 'navbar')"
-    ></color-sketch>
+  <div class="text-center">
+    <h4>Logo</h4>
+    <img *ngIf="configForm.get('logo').value" [src]="configForm.get('logo').value">
+    <div class="row justify-content-center my-3 configurations__logo">
+      <button mat-mini-fab class="mx-3" (click)="openCropDialog()">
+        <i class="material-icons">
+          image
+        </i>
+      </button>
+      <button mat-mini-fab class="mx-3">
+        <i class="material-icons">
+          crop
+        </i>
+      </button>
+      <button mat-mini-fab class="mx-3">
+        <i class="material-icons">
+          replay
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="configurations__buttons m-3">
+      <h3 class="my-3">Buttons color</h3>
+      <color-chrome
+        [color]="configForm.value.btnColor"
+        (onChangeComplete)="handleChange($event, 'button')"
+      ></color-chrome>
+      <p>Example</p>
+      <button class="btn test-btn" mat-raised-button [ngStyle]="{'background-color': getRGBA(configForm.value.btnColor)}">Test button</button>
+    </div>
+
+    <div class="configurations__navbar m-3">
+      <h3 class="my-3">Navigation panel color</h3>
+      <color-chrome
+        [color]="configForm.value.navColor"
+        (onChangeComplete)="handleChange($event, 'navbar')"
+      ></color-chrome>
+    </div>
   </div>
 </section>

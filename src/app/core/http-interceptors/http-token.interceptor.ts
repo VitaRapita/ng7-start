@@ -56,7 +56,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     this.snackBar.open(error.message, 'Close', {
       duration: 3000,
-      panelClass: 'error-notification-overlay',
+      panelClass: ['snackbar-color'],
       verticalPosition: 'bottom'
     });
   }

@@ -3,11 +3,11 @@ import { SharedModule } from '../shared';
 import { services } from './services';
 import { ConfigurationsContainerComponent } from './configurations-container/configurations-container.component';
 import { ConfigurationsRoutingModule } from './configurations-routing.module';
-import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorChromeModule } from 'ngx-color/chrome';
 
 @NgModule({
   declarations: [ConfigurationsContainerComponent],
-  imports: [SharedModule, ConfigurationsRoutingModule, ColorSketchModule],
+  imports: [SharedModule, ConfigurationsRoutingModule, ColorChromeModule],
   providers: [...services]
 })
 export class ConfigurationsModule {}

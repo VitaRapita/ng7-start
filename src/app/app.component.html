@@ -1,15 +1,14 @@
 <bb-loader></bb-loader>
 
-<div class="app header-fixed sidebar-lg-show sidebar-fixed aside-menu-fixed">
+<div class="app header-fixed sidebar-lg-show sidebar-fixed aside-menu-fixed" [ngStyle]="{'background-color': configurations.pageColor}">
   <div class="dashboard">
     <!-- HEADER -->
-    <bb-header></bb-header>
+    <bb-header *ngIf="user" [ngStyle]="{'background-color': configurations.headerColor}"></bb-header>
     <!-- MAIN -->
-    <section class="app-body">
+    <section class="app-body" [ngStyle]="{'background-color': configurations.bodyColor}">
       <main class="main">
         <div class="fluid-container p-3">
           <router-outlet></router-outlet>
-          <!--<button (click)="onClick()">loader</button>-->
         </div>
       </main>
     </section>

@@ -70,7 +70,7 @@ export class AdminContainerComponent implements OnInit, OnDestroy {
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {
       duration: 3000,
-      panelClass: 'error-notification-overlay',
+      panelClass: ['snackbar-color'],
       verticalPosition: 'bottom'
     });
   }

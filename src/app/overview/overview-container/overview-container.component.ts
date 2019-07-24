@@ -39,7 +39,7 @@ export class OverviewContainerComponent implements OnInit, OnDestroy {
   sort!: MatSort;
   pageSize = 5;
   currentPage = 0;
-  articlesCount!: number;
+  articlesCount = 0;
 
   constructor(
     private overviewService: OverviewService,

@@ -10,19 +10,23 @@ const routes: Routes = [
   },
   {
     path: 'overview',
-    loadChildren: './overview/overview.module#OverviewModule'
+    loadChildren: './overview/overview.module#OverviewModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'create',
-    loadChildren: './create/create.module#CreateModule'
+    loadChildren: './create/create.module#CreateModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'archive',
-    loadChildren: './archive/archive.module#ArchiveModule'
+    loadChildren: './archive/archive.module#ArchiveModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'faq',
-    loadChildren: './faq/faq.module#FaqModule'
+    loadChildren: './faq/faq.module#FaqModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'reporting',
@@ -41,15 +45,18 @@ const routes: Routes = [
   },
   {
     path: 'user-settings',
-    loadChildren: './user-settings/user-settings.module#UserSettingsModule'
+    loadChildren: './user-settings/user-settings.module#UserSettingsModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'article-review/:articleId',
-    loadChildren: './article/article.module#ArticleModule'
+    loadChildren: './article/article.module#ArticleModule',
+    canActivate: [AppCanActivateGuard]
   },
   {
     path: 'configurations',
-    loadChildren: './configurations/configurations.module#ConfigurationsModule'
+    loadChildren: './configurations/configurations.module#ConfigurationsModule',
+    canActivate: [AppCanActivateGuard]
   }
 ];
 

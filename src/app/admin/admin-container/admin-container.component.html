@@ -1,4 +1,4 @@
-<mat-tab-group [color]="'accent'">
+<mat-tab-group [color]="'primary'">
   <mat-tab label="Gebruikers">
     <ng-container *ngIf = "isUsersLoaded">
       <bb-admin-users-table [users]="users" (changeSlider)="changeSliderParent($event)"></bb-admin-users-table>

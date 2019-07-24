@@ -21,7 +21,6 @@ html {
 }
 
 body {
-  background: palette(gray, light);
   font-size: 1.4rem;
 }
 
@@ -138,7 +137,6 @@ mat-icon {
 *********************/
 
 .navbar-brand {
-  width: 10rem;
   margin-right: 1rem;
   text-align: center;
 
@@ -156,8 +154,7 @@ header {
   flex-direction: row;
   padding: 0;
   margin: 0;
-  background-color: #423428;
-  color: palette(white, base);
+  color: #000000;
   flex: 0 0 auto;
 
   .navbar-nav {
@@ -173,17 +170,16 @@ header {
     min-width: 10rem;
     line-height: 5rem;
     text-align: center;
-    color: palette(white, base);
+    color: palette(black, base);
     text-transform: uppercase;
 
-    &:hover {
-    }
-
     &.active {
-      background: palette(gray, base);
+      // background: palette(gray, base);
+      font-weight: 900;
 
       &:hover {
-        background: palette(gray, base);
+        // background: palette(gray, base);
+        font-weight: 900;
       }
     }
   }
@@ -199,12 +195,18 @@ header {
 /*********************
         MAIN
 *********************/
-.app,
+// .app,
 .dashboard {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-width: 1280px;
+  min-width: 810px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.app {
+  // width: 100vw;
 }
 
 .app-body {
@@ -238,7 +240,7 @@ body {
 }
 
 .mat-tab-label {
-  color: $blue-button-color;
+  color: $green-button-color;
   text-transform: uppercase;
 }
 
@@ -286,7 +288,7 @@ table {
 /****** Buttons *****/
 .btn {
   &.btn-blue {
-    background-color: $blue-button-color;
+    background-color: $green-button-color;
     color: #fff;
     text-transform: uppercase;
     a,
@@ -316,7 +318,7 @@ table {
   border-radius: 0 !important;
 
   .mat-dialog-title {
-    background-color: $blue-button-color;
+    background-color: $green-button-color;
     color: #fff;
     margin: -24px -24px 0;
     display: flex;
@@ -348,5 +350,10 @@ table {
 
 /******Color picker styles****/
 .sketch-picker {
-  width: 300px;
+  width: 30rem;
+}
+
+/*******Snackbar color****/
+.mat-simple-snackbar-action .mat-button-wrapper {
+  color: #78b532;
 }

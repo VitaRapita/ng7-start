@@ -10,8 +10,8 @@ export class AppCanActivateGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     //// Need revrite to correct roles //////
-    const userRole = 5;
-    if (userRole === 5) {
+    const token = localStorage.token;
+    if (token) {
       return true;
     } else {
       return this.router.navigate(['/login']);

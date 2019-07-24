@@ -20,8 +20,8 @@ $transition_time: 0.2s;
         height: 5rem;
         display: block;
         width: 13rem;
-        border: 1px solid $blue-button-color;
-        color: $blue-button-color;
+        border: 1px solid $green-button-color;
+        color: $green-button-color;
         background-color: #fff;
 
         &.visible {
@@ -35,9 +35,10 @@ $transition_time: 0.2s;
   &__click-area {
     width: 5rem;
     text-align: center;
+    background-color: #ffffff;
 
     i {
-      font-size: 6rem;
+      font-size: 5rem;
     }
   }
 }

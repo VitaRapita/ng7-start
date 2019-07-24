@@ -30,6 +30,7 @@ export class CreateContainerComponent implements OnInit, OnDestroy {
   weeks: any;
   selectSign: any;
   articleId: any;
+  languages: any;
 
   constructor(
     private fb: FormBuilder,
@@ -60,6 +61,9 @@ export class CreateContainerComponent implements OnInit, OnDestroy {
     this.articleForm.valueChanges.subscribe(() => {
       this.elipssisText();
     });
+
+    this.languages = JSON.parse(localStorage.configurations)['languages'];
+    console.log(this.languages);
   }
 
   getArticleDetails(id: number) {

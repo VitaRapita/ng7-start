@@ -2,6 +2,9 @@
 <div class="article-constructor">
   <div class="article-constructor__block">
     <h4 class="m-3">Artikel aanmaken</h4>
+    <div class="row mx-5 article-constructor__block--language-btns">
+      <button *ngFor="let languageBtn of languages" class="mx-3" [ngClass]="{'active': languageBtn === 'EN'}">{{languageBtn}}</button>
+    </div>
     <section class="bg-wrapper p-3 mx-3">
       <form class="article-form" [formGroup]="articleForm">
         <div class="article-constructor__block--edit py-3">
@@ -95,8 +98,8 @@
             </mat-form-field>
 
             <mat-radio-group formControlName="addLink">
-              <mat-radio-button class="px-3" value="false">Geen link</mat-radio-button>
-              <mat-radio-button class="px-3" value="true">Link</mat-radio-button>
+              <mat-radio-button color="primary" class="px-3" value="false">Geen link</mat-radio-button>
+              <mat-radio-button color="primary" class="px-3" value="true">Link</mat-radio-button>
             </mat-radio-group>
 
             <mat-form-field class="form-group full-width">
@@ -105,7 +108,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-checkbox formControlName="addEmail">
+            <mat-checkbox color="primary" formControlName="addEmail">
               <i class="material-icons">mail_outline</i>
               E-mail toevoegen aan onderschrift
             </mat-checkbox>
@@ -125,7 +128,7 @@
 
   <div class="article-constructor__block--preview">
     <h4 class="m-3">Preview</h4>
-    <div class="bg-wrapper preview-article mx-3 py-3">
+    <div class="bg-wrapper preview-article mx-3 py-3" style="margin-top: 50px">
       <!--<div class="preview-article__static m-3">
         <p class="w-100">{{articleDetails?.storeText}}</p>
         <div class="store-name row">
@@ -141,7 +144,7 @@
         <p class="block-title">Email preview</p>
         <div class="preview-article__custom--header row mx-3 px-5">
           <div class="p-3">
-            <img class="logo" src="assets/img/ahold-logo.png">
+            <img class="logo" src="assets/img/delhaize-small-logo.png">
           </div>
           <div>
             <p class="client-name">Voor &lt;&lt;naam klant&gt;&gt; </p>
@@ -153,7 +156,7 @@
 
         <div class="preview-article__custom--short-text m-3 row">
           <img *ngIf="articleDetails?.logo" class="m-3 preview-article__image logo" [src]="articleDetails?.logo">
-          <img *ngIf="!articleDetails?.logo" class="m-3 preview-article__image logo" src="assets/img/ahold-logo.png">
+          <img *ngIf="!articleDetails?.logo" class="m-3 preview-article__image logo" src="assets/img/delhaize-small-logo.png">
           <div class="article-text p-3">
             <p>Beste << naam klant >> </p>
             <span id="truncation-text" *ngIf="articleForm.value['articleText']">{{articleForm.value['articleText']}}</span>
@@ -173,7 +176,7 @@
       <div class="preview-article__custom landingpage-email">
         <p class="block-title">Landingpage preview</p>
         <div class="preview-article__custom--landingpage-header">
-          <img class="logo" src="assets/img/ahold-logo.png">
+          <img class="logo" src="assets/img/delhaize-small-logo.png">
         </div>
         <div class="preview-article__custom--team-photo block-width-80">
           <img *ngIf="articleDetails?.teamPhoto" [src]="articleDetails?.teamPhoto">
@@ -220,7 +223,7 @@
           </div>
 
           <div class="preview-article__custom--signature row m-0 align-items-center">
-            <img class="preview-article__image logo" src="assets/img/ahold-logo.png">
+            <img class="preview-article__image logo" src="assets/img/delhaize-small-logo.png">
             <div class="p-3 signature" *ngIf="selectSign?.id !== 8">
               <span>Met vriendelijke groet, </span> <br/>
               <span *ngIf="selectSign?.nameSupermarketManager" class="bold">&#123; Name supermarket manager &#125;,</span>

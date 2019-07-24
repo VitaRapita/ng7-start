@@ -41,6 +41,7 @@ export class AdminStoresTableComponent implements OnInit {
   sort!: MatSort;
   @Output()
   editStore = new EventEmitter();
+  sliderColor = 'primary';
 
   constructor(private fb: FormBuilder) {
     this.editedStoreForm = this.fb.group({
